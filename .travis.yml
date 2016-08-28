@@ -5,4 +5,5 @@
 # @Last modified time: 29-Aug-2016
 
 language: crystal
-install: "apt-get install libnotify-bin"
+sudo: required
+install: "sudo apt-get install libnotify-bin"
