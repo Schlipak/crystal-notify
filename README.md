@@ -1,6 +1,14 @@
-# crystal-notify
+<!--
+@Author: Guillaume de Matos <schlipak>
+@Date:   28-Aug-2016
+@Email:  g.de.matos@free.fr
+@Last modified by:   schlipak
+@Last modified time: 29-Aug-2016
+-->
 
-TODO: Write a description here
+# Crystal-Notify
+
+[Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
 
 ## Installation
 
@@ -10,23 +18,22 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   crystal-notify:
-    github: [your-github-name]/crystal-notify
+    github: schlipak/crystal-notify
 ```
 
+Then run `crystal deps`
 
 ## Usage
 
 
 ```crystal
 require "crystal-notify"
+
+manager = Notify::Manager.new("MyApp")
+manager.notify("Summary", "Body", "dialog-ok").show
+manager.finalize
 ```
 
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
@@ -38,4 +45,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) de-mat_b - creator, maintainer
+- Guillaume '[Schlipak](https://github.com/schlipak)' de Matos - creator, maintainer
