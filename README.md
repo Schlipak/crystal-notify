@@ -6,7 +6,7 @@
 @Last modified time: 29-Aug-2016
 -->
 
-# Crystal-Notify
+# Crystal-Notify [![Build Status](https://travis-ci.org/Schlipak/crystal-notify.svg?branch=master)](https://travis-ci.org/Schlipak/crystal-notify)
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
 
