@@ -106,6 +106,17 @@ class Notify::Manager
     }
   end
 
+  # Creates a new notification
+  #
+  # *Args*  :
+  #   - *summary* : String
+  #   - *body*    : String
+  #   - *icon*    : String
+  #
+  # *icon* is the GTK name for the icon you want.
+  # Check out the GTK spec to list some of them:
+  #
+  # https://developer.gnome.org/icon-naming-spec/
   def notify(
       summary : String,
       body    : String = "",
