@@ -6,4 +6,4 @@
 
 language: crystal
 sudo: required
-install: "sudo apt-get install libnotify-bin"
+before_install: "sudo apt-get install libnotify-bin notify-osd"
