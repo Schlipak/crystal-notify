@@ -3,7 +3,7 @@ require "./spec_helper"
 describe Notify::Manager do
   it "initializes the library" do
     man = Notify::Manager.new("CrystalNotify")
-    man.initialized?.should eq(true)
+    man.initialized?.should be_true
     man.finalize
   end
 
