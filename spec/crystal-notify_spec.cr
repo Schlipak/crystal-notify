@@ -4,14 +4,12 @@ describe Notify::Manager do
   it "initializes the library" do
     man = Notify::Manager.new("CrystalNotify")
     man.initialized?.should be_true
-    man.finalize
   end
 
   it "gets the app name" do
     app_name = "CrystalNotify"
     man = Notify::Manager.new(app_name)
     man.app_name.should eq(app_name)
-    man.finalize
   end
 
   it "sets the app name" do
@@ -19,21 +17,18 @@ describe Notify::Manager do
     man = Notify::Manager.new("CrystalNotify")
     man.app_name = app_name
     man.app_name.should eq(app_name)
-    man.finalize
   end
 
   it "gets the notification server capabilities" do
     man = Notify::Manager.new("CrystalNotify")
     caps = man.server_caps
     STDERR.puts "Server capacities: #{caps}"
-    man.finalize
   end
 
   it "gets the notification server informations" do
     man = Notify::Manager.new("CrystalNotify")
     infos = man.server_info
     STDERR.puts "Server infos: #{infos}"
-    man.finalize
   end
 
   it "shows a basic notification" do
@@ -47,7 +42,6 @@ describe Notify::Manager do
     if notif
       notif.show.should be_true
     end
-    man.finalize
   end
 
   it "shows a notification and updates its summary" do
@@ -64,7 +58,6 @@ describe Notify::Manager do
       notif.summary.should_not eq(bad_summary)
       notif.show.should be_true
     end
-    man.finalize
   end
 
   it "shows a notification and updates its body" do
@@ -81,7 +74,6 @@ describe Notify::Manager do
       notif.body.should_not eq(bad_body)
       notif.show.should be_true
     end
-    man.finalize
   end
 
   it "shows a notification and updates its icon" do
@@ -98,7 +90,6 @@ describe Notify::Manager do
       notif.icon.should_not eq(bad_icon)
       notif.show.should be_true
     end
-    man.finalize
   end
 
   it "checks the closed_reason of the notification" do
@@ -115,7 +106,6 @@ describe Notify::Manager do
       notif.close
       notif.closed_reason.should eq(-1)
     end
-    man.finalize
   end
 
   it "updates all notification's app-name from the manager" do
@@ -132,7 +122,6 @@ describe Notify::Manager do
     man.each do |notif|
       notif.app_name.should eq(new_name)
     end
-    man.finalize
   end
 
   it "checks the amount of notifications in the manager" do
@@ -145,7 +134,6 @@ describe Notify::Manager do
       )
     end
     man.count.should eq(42)
-    man.finalize
   end
 
   it "accesses a specific index in the notification manager" do
@@ -158,7 +146,20 @@ describe Notify::Manager do
       )
     end
     man[3].summary.should eq("Notif 3")
-    man.finalize
+  end
+
+  it "clears the content of the manager" do
+    man = Notify::Manager.new("CrystalNotify")
+    10.times do
+      man.notify(
+        "Temporary notification",
+        "Whatever, this is irrelevant",
+        "window-close"
+      )
+    end
+    man.clear
+    man.count.should eq(0)
+    man.empty?.should be_true
   end
 
   it "checks that a notification can be shown only once" do
@@ -175,6 +176,5 @@ describe Notify::Manager do
         notif.show.should be_false
       end
     end
-    man.finalize
   end
 end
