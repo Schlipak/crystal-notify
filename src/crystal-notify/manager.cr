@@ -7,9 +7,6 @@ require "./libnotify"
 # This is an abstraction of the several libnotify functions,
 # and allows multiple actions on native desktop notifications,
 # reguardless of the WindowManager used by the user.
-#
-# The `#finalize` method shall always be called to cleanup
-# the library
 class Notify::Manager
   # Exception raised when failing to initialize libnotify
   class InitializationException < Exception
@@ -38,6 +35,8 @@ class Notify::Manager
   getter notification
 
   # Frees up the libnotify instance. Makes *self* unusable.
+  #
+  # Call this only if needed, otherwise the CG will take care of it.
   def finalize
     LibNotify.finalize
   end
@@ -171,8 +170,19 @@ class Notify::Manager
   end
 
   # Returns the number of notifications held by the manager
+  #
+  # *Returns*   :
+  #   - *Int*
   def count
     @notifications.size
+  end
+
+  # Returns whether the manager contains notifications or not
+  #
+  # *Returns*   :
+  #   - *Bool*
+  def empty?
+    self.count == 0
   end
 
   # Get the nth notification held by the manager
