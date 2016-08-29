@@ -1,3 +1,11 @@
+<!--
+@Author: Guillaume de Matos <schlipak>
+@Date:   29-Aug-2016
+@Email:  g.de.matos@free.fr
+@Last modified by:   schlipak
+@Last modified time: 29-Aug-2016
+-->
+
 # Crystal-Notify
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
@@ -24,6 +32,8 @@ require "crystal-notify"
 manager = Notify::Manager.new("MyApp")
 manager.notify("Summary", "Body", "dialog-ok").show
 ```
+
+[Documentation](https://schlipak.github.io/crystal-notify/)
 
 
 ## Contributing
