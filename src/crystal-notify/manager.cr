@@ -32,7 +32,7 @@ class Notify::Manager
   #
   # *Returns* :
   #   - *Array(LibNotify::Notification)*
-  getter notification
+  getter notifications
 
   # Frees up the libnotify instance. Makes *self* unusable.
   #
