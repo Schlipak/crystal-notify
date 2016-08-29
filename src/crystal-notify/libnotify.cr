@@ -35,6 +35,8 @@ lib LibNotify
     prev : List*
   end
 
+  alias Pixbuf = Void*
+
   fun init            = notify_init(
     app_name : LibC::Char*
   ) : Bool
@@ -75,6 +77,10 @@ lib LibNotify
   fun notif_get_closed_reason = notify_notification_get_closed_reason(
     notification : Notification*
   ) : Int32
+  fun notif_set_image_pixbuf  = notify_notification_set_image_from_pixbuf(
+    notification : Notification*,
+    pixbuf       : Pixbuf
+  ) : Void
   fun notif_set_app_name      = notify_notification_set_app_name(
     notification : Notification*,
     app_name     : LibC::Char*

@@ -37,19 +37,35 @@ class Notify::Notification
     end
   end
 
+  protected getter lib_notif
+
+  # Returns true if two notifications are the same
+  #
+  # The check is performed based on the internal libnotify struct
+  #
+  # Use the standard #== to check for object equality
+  #
+  # *Args*    :
+  #   - *other* : Notification
+  # *Returns* :
+  #   - *Bool*
+  def same?(other : Notification)
+    @lib_notif == other.lib_notif
+  end
+
   getter app_name
   getter summary
   getter body
   getter icon
   getter timeout
 
-    # Sets the notification summary and updates
-    # the `LibNotify::Notification` struct
-    #
-    # *Args*    :
-    #   - *summary* : String
-    # *Returns* :
-    #   - *Bool*
+  # Sets the notification summary and updates
+  # the `LibNotify::Notification` struct
+  #
+  # *Args*    :
+  #   - *summary* : String
+  # *Returns* :
+  #   - *Bool*
   def summary=(summary : String)
     ret = LibNotify.notif_update(
       @lib_notif, summary, @body, @icon
@@ -97,6 +113,15 @@ class Notify::Notification
     false
   end
 
+  # :nodoc:
+  def icon=(pixbuf : LibNotify::Pixbuf)
+    LibNotify.notif_set_image_pixbuf(@lib_notif, pixbuf)
+  end
+
+  # Sets the current application name
+  #
+  # *Args*  :
+  #   - *app_name* : String
   def app_name=(app_name : String)
     @app_name = app_name
     LibNotify.notif_set_app_name(

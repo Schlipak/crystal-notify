@@ -89,6 +89,11 @@ class Notify::Manager
   #
   # *Returns* :
   #   - *Array(String)*
+  #
+  # ```
+  # man = Notify::Manager.new "MyApp"
+  # man.server_caps #=> ["actions", "actions-icons", "body", "body-markup", "icon-static"]
+  # ```
   def server_caps
     caps = [] of String
     strukt = LibNotify.get_server_caps.value
@@ -103,6 +108,11 @@ class Notify::Manager
   #
   # *Returns* :
   #   - *NamedTuple(name: String, vendor: String, version: String, spec_version: String)*
+  #
+  # ```
+  # man = Notify::Manager.new "MyApp"
+  # man.server_info #=> {name: "cinnamon", vendor: "GNOME", version: "3.0.7", spec_version: "1.2"}
+  # ```
   def server_info
     LibNotify.get_server_info(
       out name,
