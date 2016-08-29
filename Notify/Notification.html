@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Schlipak/crystal-notify">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Notify::Notification - github.com/Schlipak/crystal-notify</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/Schlipak/crystal-notify/Notify" data-name="notify">
+      <a href="../Notify.html">Notify</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Schlipak/crystal-notify/Notify/Manager" data-name="notify::manager">
+      <a href="../Notify/Manager.html">Manager</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Manager/InitializationException" data-name="notify::manager::initializationexception">
+      <a href="../Notify/Manager/InitializationException.html">InitializationException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent current" data-id="github.com/Schlipak/crystal-notify/Notify/Notification" data-name="notify::notification">
+      <a href="../Notify/Notification.html">Notification</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Notification/InstantiationException" data-name="notify::notification::instantiationexception">
+      <a href="../Notify/Notification/InstantiationException.html">InstantiationException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Notify::Notification
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Notify/Notification.html">Notify::Notification</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The Notification class</p>
+
+<p>Encapsulates the <code>LibNotify::Notification</code> struct</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L6" target="_blank">crystal-notify/notification.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28app_name%3AString%2Csummary%3AString%2Cbody%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%2Cicon%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%29-class-method" class="signature"><strong>.new</strong>(app_name : String, summary : String, body : String = <span class="s">&quot;&quot;</span>, icon : String = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p>Creates a new Notification</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#app_name%3AString-instance-method" class="signature"><strong>#app_name</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#app_name%3D%28app_name%3AString%29-instance-method" class="signature"><strong>#app_name=</strong>(app_name : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3AString-instance-method" class="signature"><strong>#body</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#body%3D%28body%3AString%29-instance-method" class="signature"><strong>#body=</strong>(body : String)</a>
+        
+          <div class="summary"><p>Sets the notification body and updates the <code>LibNotify::Notification</code> struct</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
+        
+          <div class="summary"><p>Closes the notification</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#closed_reason-instance-method" class="signature"><strong>#closed_reason</strong></a>
+        
+          <div class="summary"><p><strong>FIXME</strong>: Always returns -1 since we don't have access to signal_connect to use the 'closed' signal.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#icon%3AString-instance-method" class="signature"><strong>#icon</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#icon%3D%28icon%3AString%29-instance-method" class="signature"><strong>#icon=</strong>(icon : String)</a>
+        
+          <div class="summary"><p>Sets the notification icon and updates the <code>LibNotify::Notification</code> struct</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show-instance-method" class="signature"><strong>#show</strong></a>
+        
+          <div class="summary"><p>Displays the notification</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#summary%3AString-instance-method" class="signature"><strong>#summary</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#summary%3D%28summary%3AString%29-instance-method" class="signature"><strong>#summary=</strong>(summary : String)</a>
+        
+          <div class="summary"><p>Sets the notification summary and updates the <code>LibNotify::Notification</code> struct</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timeout%3AInt32%7CLibNotify%3A%3ATimeout-instance-method" class="signature"><strong>#timeout</strong> : Int32 | LibNotify::Timeout</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#timeout%3D%28time%3AInt32%29-instance-method" class="signature"><strong>#timeout=</strong>(time : Int32)</a>
+        
+          <div class="summary"><p>Sets the timeout of the notification</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;app_name:String,summary:String,body:String&#61;&lt;spanclass&#61;&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,icon:String&#61;&lt;spanclass&#61;&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(app_name : String, summary : String, body : String = <span class="s">&quot;&quot;</span>, icon : String = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#new%28app_name%3AString%2Csummary%3AString%2Cbody%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%2Cicon%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Creates a new Notification</p>
+
+<p>Do not call this method directly,
+<code><a href="../Notify/Manager.html#notify%28summary%3AString%2Cbody%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%2Cicon%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%29-instance-method">Notify::Manager#notify</a></code> takes care of this</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="app_name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>app_name</strong> : String
+
+        <a class="method-permalink" href="#app_name%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="app_name&#61;&#40;app_name:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>app_name=</strong>(app_name : String)
+
+        <a class="method-permalink" href="#app_name%3D%28app_name%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L100" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body:String-instance-method">
+      <div class="signature">
+        
+        def <strong>body</strong> : String
+
+        <a class="method-permalink" href="#body%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="body&#61;&#40;body:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>body=</strong>(body : String)
+
+        <a class="method-permalink" href="#body%3D%28body%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the notification body and updates
+the <code>LibNotify::Notification</code> struct</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>body</em> : String</li></ul></ul>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close-instance-method">
+      <div class="signature">
+        
+        def <strong>close</strong>
+
+        <a class="method-permalink" href="#close-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Closes the notification</p>
+
+<p><em>Returns</em>   :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="closed_reason-instance-method">
+      <div class="signature">
+        
+        def <strong>closed_reason</strong>
+
+        <a class="method-permalink" href="#closed_reason-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p><strong>FIXME</strong>: Always returns -1 since we don't have access to
+signal_connect to use the 'closed' signal.</p>
+
+<p>Gets the closed reason ID</p>
+
+<p><em>Returns</em>   :</p>
+
+<ul><li><em>Int32</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L162" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="icon:String-instance-method">
+      <div class="signature">
+        
+        def <strong>icon</strong> : String
+
+        <a class="method-permalink" href="#icon%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="icon&#61;&#40;icon:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>icon=</strong>(icon : String)
+
+        <a class="method-permalink" href="#icon%3D%28icon%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the notification icon and updates
+the <code>LibNotify::Notification</code> struct</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>icon</em> : String</li></ul></ul>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L89" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show-instance-method">
+      <div class="signature">
+        
+        def <strong>show</strong>
+
+        <a class="method-permalink" href="#show-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Displays the notification</p>
+
+<p><em>Returns</em>   :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="summary:String-instance-method">
+      <div class="signature">
+        
+        def <strong>summary</strong> : String
+
+        <a class="method-permalink" href="#summary%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="summary&#61;&#40;summary:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>summary=</strong>(summary : String)
+
+        <a class="method-permalink" href="#summary%3D%28summary%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the notification summary and updates
+the <code>LibNotify::Notification</code> struct</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>summary</em> : String</li></ul></ul>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timeout:Int32|LibNotify::Timeout-instance-method">
+      <div class="signature">
+        
+        def <strong>timeout</strong> : Int32 | <a href="../LibNotify/Timeout.html">LibNotify::Timeout</a>
+
+        <a class="method-permalink" href="#timeout%3AInt32%7CLibNotify%3A%3ATimeout-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="timeout&#61;&#40;time:Int32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>timeout=</strong>(time : Int32)
+
+        <a class="method-permalink" href="#timeout%3D%28time%3AInt32%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the timeout of the notification</p>
+
+<p>To set as default, pass <em>LibNotify::Timeout::Default</em>.</p>
+
+<p>To set the notification to never expire,
+pass <em>LibNotify::Timeout::Never</em>.</p>
+
+<p>To set an arbitrary timeout, pass your desired
+time in milliseconds.</p>
+
+<p>Note that the timeout setting may be entirely ignored by the
+notification server if not supported</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>timeout</em> : Int32</li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/notification.cr#L122" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

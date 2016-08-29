@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Schlipak/crystal-notify">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Notify::Manager - github.com/Schlipak/crystal-notify</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/Schlipak/crystal-notify/Notify" data-name="notify">
+      <a href="../Notify.html">Notify</a>
+      
+        <ul>
+  
+  <li class="parent current" data-id="github.com/Schlipak/crystal-notify/Notify/Manager" data-name="notify::manager">
+      <a href="../Notify/Manager.html">Manager</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Manager/InitializationException" data-name="notify::manager::initializationexception">
+      <a href="../Notify/Manager/InitializationException.html">InitializationException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Schlipak/crystal-notify/Notify/Notification" data-name="notify::notification">
+      <a href="../Notify/Notification.html">Notification</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Notification/InstantiationException" data-name="notify::notification::instantiationexception">
+      <a href="../Notify/Notification/InstantiationException.html">InstantiationException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Notify::Manager
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Notify/Manager.html">Notify::Manager</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The notification manager class</p>
+
+<p>This is an abstraction of the several libnotify functions,
+and allows multiple actions on native desktop notifications,
+reguardless of the WindowManager used by the user.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L10" target="_blank">crystal-notify/manager.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28app_name%3AString%29-class-method" class="signature"><strong>.new</strong>(app_name : String)</a>
+        
+          <div class="summary"><p>Instanciates a new Notify::Manager with the given application name</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%28index%3AInt%29-instance-method" class="signature"><strong>#[]</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Get the nth notification held by the manager</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#app_name-instance-method" class="signature"><strong>#app_name</strong></a>
+        
+          <div class="summary"><p>Gets the current application name</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#app_name%3D%28app_name%3AString%29-instance-method" class="signature"><strong>#app_name=</strong>(app_name : String)</a>
+        
+          <div class="summary"><p>Sets the current application name</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#app_name_deep%3D%28app_name%3AString%29-instance-method" class="signature"><strong>#app_name_deep=</strong>(app_name : String)</a>
+        
+          <div class="summary"><p>Sets the current application name, cascading the change to all notifications currently held by the manager</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear-instance-method" class="signature"><strong>#clear</strong></a>
+        
+          <div class="summary"><p>Closes all notifications and removes them from the manager</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#close_all-instance-method" class="signature"><strong>#close_all</strong></a>
+        
+          <div class="summary"><p>Closes all the notifications held by the manager</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count-instance-method" class="signature"><strong>#count</strong></a>
+        
+          <div class="summary"><p>Returns the number of notifications held by the manager</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each%28%26block%29-instance-method" class="signature"><strong>#each</strong>(&block)</a>
+        
+          <div class="summary"><p>Iterates over all the notifications held by the manager and yields them to the calling block</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty%3F-instance-method" class="signature"><strong>#empty?</strong></a>
+        
+          <div class="summary"><p>Returns whether the manager contains notifications or not</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#finalize-instance-method" class="signature"><strong>#finalize</strong></a>
+        
+          <div class="summary"><p>Frees up the libnotify instance.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#initialized%3F-instance-method" class="signature"><strong>#initialized?</strong></a>
+        
+          <div class="summary"><p>Checks if the libnotify is initialized</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notification-instance-method" class="signature"><strong>#notification</strong></a>
+        
+          <div class="summary"><p>Gets the internal notification array</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#notify%28summary%3AString%2Cbody%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%2Cicon%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%29-instance-method" class="signature"><strong>#notify</strong>(summary : String, body : String = <span class="s">&quot;&quot;</span>, icon : String = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p>Creates a new notification</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#server_caps-instance-method" class="signature"><strong>#server_caps</strong></a>
+        
+          <div class="summary"><p>Gives the list of the features the current notification server supports</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#server_info-instance-method" class="signature"><strong>#server_info</strong></a>
+        
+          <div class="summary"><p>Gives some infos about the current notification server</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#show_all-instance-method" class="signature"><strong>#show_all</strong></a>
+        
+          <div class="summary"><p>Displays all the notifications held by the manager</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;app_name:String&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(app_name : String)
+
+        <a class="method-permalink" href="#new%28app_name%3AString%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Instanciates a new Notify::Manager with the given application
+name</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>app_name</em> : String</li></ul></ul>
+
+<p><em>Returns</em> :</p>
+
+<ul><li>Class instance</li></ul></ul>
+
+<p><em>Raises</em>  :</p>
+
+<ul><li><code><a href="../Notify/Manager/InitializationException.html">InitializationException</a></code></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="&#91;&#93;&#40;index:Int&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(index : Int)
+
+        <a class="method-permalink" href="#%5B%5D%28index%3AInt%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Get the nth notification held by the manager</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>index</em> : Int</li></ul></ul>
+
+<p><em>Raises</em>  :</p>
+
+<ul><li><code>IndexError</code> if trying to access a notification outside of range</li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L194" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="app_name-instance-method">
+      <div class="signature">
+        
+        def <strong>app_name</strong>
+
+        <a class="method-permalink" href="#app_name-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the current application name</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>String</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="app_name&#61;&#40;app_name:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>app_name=</strong>(app_name : String)
+
+        <a class="method-permalink" href="#app_name%3D%28app_name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the current application name</p>
+
+<p><em>Args</em>  :</p>
+
+<ul><li><em>app_name</em>  : String</li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L69" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="app_name_deep&#61;&#40;app_name:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>app_name_deep=</strong>(app_name : String)
+
+        <a class="method-permalink" href="#app_name_deep%3D%28app_name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the current application name, cascading the
+change to all notifications currently held by the
+manager</p>
+
+<p><em>Args</em>  :</p>
+
+<ul><li><em>app_name</em>  : String</li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong>
+
+        <a class="method-permalink" href="#clear-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Closes all notifications and removes them from the manager</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="close_all-instance-method">
+      <div class="signature">
+        
+        def <strong>close_all</strong>
+
+        <a class="method-permalink" href="#close_all-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Closes all the notifications held by the manager</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L152" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong>
+
+        <a class="method-permalink" href="#count-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns the number of notifications held by the manager</p>
+
+<p><em>Returns</em>   :</p>
+
+<ul><li><em>Int</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L176" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each&#40;&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&block)
+
+        <a class="method-permalink" href="#each%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Iterates over all the notifications held by the manager
+and yields them to the calling block</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L160" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong>
+
+        <a class="method-permalink" href="#empty%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns whether the manager contains notifications or not</p>
+
+<p><em>Returns</em>   :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L184" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="finalize-instance-method">
+      <div class="signature">
+        
+        def <strong>finalize</strong>
+
+        <a class="method-permalink" href="#finalize-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Frees up the libnotify instance. Makes <em>self</em> unusable.</p>
+
+<p>Call this only if needed, otherwise the CG will take care of it.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="initialized?-instance-method">
+      <div class="signature">
+        
+        def <strong>initialized?</strong>
+
+        <a class="method-permalink" href="#initialized%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Checks if the libnotify is initialized</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notification-instance-method">
+      <div class="signature">
+        
+        def <strong>notification</strong>
+
+        <a class="method-permalink" href="#notification-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the internal notification array</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Array(LibNotify::Notification)</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="notify&#40;summary:String,body:String&#61;&lt;spanclass&#61;&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;,icon:String&#61;&lt;spanclass&#61;&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>notify</strong>(summary : String, body : String = <span class="s">&quot;&quot;</span>, icon : String = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#notify%28summary%3AString%2Cbody%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%2Cicon%3AString%3D%3Cspanclass%3D%22s%22%3E%26quot%3B%26quot%3B%3C%2Fspan%3E%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Creates a new notification</p>
+
+<p><em>Args</em>  :</p>
+
+<ul><li><em>summary</em> : String</li><li><em>body</em>    : String</li><li><em>icon</em>    : String</li></ul></ul>
+
+<p><em>icon</em> is the GTK name for the icon you want.
+Check out the GTK spec to list some of them:</p>
+
+<p>https://developer.gnome.org/icon-naming-spec/</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L133" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="server_caps-instance-method">
+      <div class="signature">
+        
+        def <strong>server_caps</strong>
+
+        <a class="method-permalink" href="#server_caps-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gives the list of the features the current
+notification server supports</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Array(String)</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L92" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="server_info-instance-method">
+      <div class="signature">
+        
+        def <strong>server_info</strong>
+
+        <a class="method-permalink" href="#server_info-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gives some infos about the current notification server</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>NamedTuple(name: String, vendor: String, version: String, spec_version: String)</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="show_all-instance-method">
+      <div class="signature">
+        
+        def <strong>show_all</strong>
+
+        <a class="method-permalink" href="#show_all-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Displays all the notifications held by the manager</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/HEAD/src/crystal-notify/manager.cr#L145" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
