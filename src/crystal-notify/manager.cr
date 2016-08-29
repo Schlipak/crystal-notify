@@ -24,9 +24,9 @@ class Notify::Manager
   #   - Class instance
   # *Raises*  :
   #   - `InitializationException`
-  def initialize(app_name : String)
+  def initialize(@app_name : String)
     @notifications = [] of Notification
-    unless LibNotify.init(app_name)
+    unless LibNotify.init(@app_name)
       raise InitializationException.new("Error while initializing libnotify")
     end
   end
@@ -66,9 +66,23 @@ class Notify::Manager
   # Sets the current application name
   #
   # *Args*  :
-  #   - *app_name* : String
+  #   - *app_name*  : String
   def app_name=(app_name : String)
-    LibNotify.set_app_name(app_name)
+    @app_name = app_name
+    LibNotify.set_app_name(@app_name)
+  end
+
+  # Sets the current application name, cascading the
+  # change to all notifications currently held by the
+  # manager
+  #
+  # *Args*  :
+  #   - *app_name*  : String
+  def app_name_deep=(app_name : String)
+    self.app_name = app_name
+    @notifications.each do |notif|
+      notif.app_name = @app_name
+    end
   end
 
   # Gives the list of the features the current
@@ -123,8 +137,51 @@ class Notify::Manager
       icon    : String = ""
     )
 
-    notif = Notification.new(summary, body, icon)
+    notif = Notification.new(@app_name, summary, body, icon)
     @notifications << notif
     return notif
+  end
+
+  # Displays all the notifications held by the manager
+  def show_all
+    @notifications.each do |notif|
+      notif.show
+    end
+  end
+
+  # Closes all the notifications held by the manager
+  def close_all
+    @notifications.each do |notif|
+      notif.close
+    end
+  end
+
+  # Iterates over all the notifications held by the manager
+  # and yields them to the calling block
+  def each
+    @notifications.each do |notif|
+      yield notif
+    end
+  end
+
+  # Closes all notifications and removes them from the manager
+  def clear
+    self.close_all
+    @notifications.clear
+  end
+
+  # Returns the number of notifications held by the manager
+  def count
+    @notifications.size
+  end
+
+  # Get the nth notification held by the manager
+  #
+  # *Args*    :
+  #   - *index* : Int
+  # *Raises*  :
+  #   - `IndexError` if trying to access a notification outside of range
+  def [](index : Int)
+    @notifications[index]
   end
 end

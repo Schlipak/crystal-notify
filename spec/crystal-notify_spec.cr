@@ -56,7 +56,7 @@ describe Notify::Manager do
     notif = man.notify(
       bad_summary,
       "The summary was updated. Trust me, I'm the programmer.",
-      "object-rotate"
+      "view-refresh"
     )
     notif.should_not be(nil)
     if notif
@@ -73,7 +73,7 @@ describe Notify::Manager do
     notif = man.notify(
       "Notification update #2",
       bad_body,
-      "object-rotate"
+      "view-refresh"
     )
     notif.should_not be(nil)
     if notif
@@ -89,14 +89,91 @@ describe Notify::Manager do
     bad_icon = "dialog-no"
     notif = man.notify(
       "Notification update #3",
-      "The icon was updated. Trust me, I'm... Oh, this is getting old already.",
+      "The icon was updated. Trust me, I'm... Okay, this is getting old.",
       bad_icon
     )
     notif.should_not be(nil)
     if notif
-      notif.icon = "object-rotate"
+      notif.icon = "view-refresh"
       notif.icon.should_not eq(bad_icon)
       notif.show.should be_true
+    end
+    man.finalize
+  end
+
+  it "checks the closed_reason of the notification" do
+    man = Notify::Manager.new("CrystalNotify")
+    notif = man.notify(
+      "Test closed_reason",
+      "This checks the closed_reason of the notification",
+      "window-close"
+    )
+    notif.should_not be(nil)
+    if notif
+      notif.show.should be_true
+      notif.closed_reason.should eq(-1)
+      notif.close
+      notif.closed_reason.should eq(-1)
+    end
+    man.finalize
+  end
+
+  it "updates all notification's app-name from the manager" do
+    man = Notify::Manager.new("CrystalNotify")
+    10.times do
+      man.notify(
+        "Test update app-name",
+        "Whatever, this is irrelevant",
+        "window-close"
+      )
+    end
+    new_name = "AppNameChanger"
+    man.app_name_deep = new_name
+    man.each do |notif|
+      notif.app_name.should eq(new_name)
+    end
+    man.finalize
+  end
+
+  it "checks the amount of notifications in the manager" do
+    man = Notify::Manager.new("CrystalNotify")
+    42.times do
+      man.notify(
+        "Temporary notification",
+        "You really should not see this",
+        "help-faq"
+      )
+    end
+    man.count.should eq(42)
+    man.finalize
+  end
+
+  it "accesses a specific index in the notification manager" do
+    man = Notify::Manager.new("CrystalNotify")
+    10.times do |i|
+      man.notify(
+        "Notif #{i}",
+        "Whatever, this is irrelevant",
+        "window-close"
+      )
+    end
+    man[3].summary.should eq("Notif 3")
+    man.finalize
+  end
+
+  it "checks that a notification can be shown only once" do
+    man = Notify::Manager.new("CrystalNotify")
+    notif = man.notify(
+      "Multiple calls to #show",
+      "This is the first and only time you should see me.",
+      "gtk-about"
+    )
+    notif.should_not be(nil)
+    if notif
+      notif.show.should be_true
+      10.times do
+        notif.show.should be_false
+      end
     end
     man.finalize
   end
