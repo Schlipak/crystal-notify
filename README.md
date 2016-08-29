@@ -31,7 +31,6 @@ require "crystal-notify"
 
 manager = Notify::Manager.new("MyApp")
 manager.notify("Summary", "Body", "dialog-ok").show
-manager.finalize
 ```
 
 
