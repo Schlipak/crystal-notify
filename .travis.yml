@@ -18,9 +18,16 @@ addons:
       - libnotify-dev
 before_install:
   - sudo apt-get update
-  - sudo apt-get install libdbus-1-dev libdbus-glib-1-dev
+  - sudo apt-get install python-gtk2-dev libdbus-1-dev libdbus-glib-1-dev
   - pip install --upgrade pip
   - pip install dbus-python numpy
+  - cd /tmp
+  - wget https://cairographics.org/releases/py2cairo-1.10.0.tar.bz2
+  - tar xf py2cairo-1.10.0.tar.bz2
+  - cd py2cairo-1.10.0/
+  - python2 ./waf configure --prefix=/home/travis/virtualenv/python$TRAVIS_PYTHON_VERSION/
+  - python2 ./waf build
+  - python2 ./waf install
   - cd /tmp
   - wget http://ftp.gnome.org/pub/GNOME/sources/pygtk/2.24/pygtk-2.24.0.tar.bz2
   - tar xf pygtk-2.24.0.tar.bz2
