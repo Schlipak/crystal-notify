@@ -19,7 +19,7 @@ before_install:
   - cd /tmp
   - git clone https://github.com/halhen/statnot
   - cd statnot/
-  - sudo add-apt-repository ppa:fkrull/deadsnakes
+  - sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7
   - sudo apt-get update
   - sudo apt-get install python2.7 python-gtk2-dev
   - sudo pip install dbus-python
