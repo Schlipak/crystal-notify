@@ -11,4 +11,8 @@ crystal:
 addons:
   apt:
     packages:
-      - libnotify4
+      - libgtk2.0-dev
+      - libnotify-dev
+before_install:
+  - "echo $PKG_CONFIG_PATH"
+  - "ls -l /usr/lib/pkgconfig"
