@@ -215,7 +215,7 @@ describe Notify::Notification do
     end
   end
 
-  describe "misc" do
+  describe "misc tests" do
     it "checks that a notification can be shown only once" do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(

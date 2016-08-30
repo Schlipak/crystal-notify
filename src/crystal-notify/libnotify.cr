@@ -9,12 +9,14 @@ lib LibNotify
   end
 
   struct Notification
-    app_name      : LibC::Char*
-    body          : LibC::Char*
-    closed_reason : Int32
-    icon_name     : LibC::Char*
-    id            : Int32
-    summary       : LibC::Char*
+    # Struct is opaque
+    #
+    # app_name      : LibC::Char*
+    # body          : LibC::Char*
+    # closed_reason : Int32
+    # icon_name     : LibC::Char*
+    # id            : Int32
+    # summary       : LibC::Char*
   end
 
   enum Timeout

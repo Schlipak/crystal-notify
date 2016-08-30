@@ -17,13 +17,14 @@ addons:
       - libgtk2.0-dev
       - libnotify-dev
 before_install:
+  - sudo apt-get update
+  - sudo apt-get install python-gtk2-dev libdbus-1-dev libdbus-glib-1-dev
+  - pip install dbus-python
   - cd /tmp
   - git clone https://github.com/halhen/statnot
   - cd statnot/
-  - sudo apt-get update
-  - sudo apt-get install python-gtk2-dev libdbus-1-dev libdbus-glib-1-dev
-  - sudo pip install dbus-python
   - sh -e /etc/init.d/xvfb start
   - sleep 3
   - touch ~/.statusline.sh
   - python2 statnot &
+script: crystal spec -v
