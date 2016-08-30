@@ -8,11 +8,13 @@ language: crystal
 sudo: required
 crystal:
   - latest
+env:
+  - DISPLAY=:99.0
 addons:
   apt:
     packages:
       - libgtk2.0-dev
       - libnotify-dev
 before_install:
-  - "echo $PKG_CONFIG_PATH"
-  - "ls -l /usr/lib/pkgconfig"
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
