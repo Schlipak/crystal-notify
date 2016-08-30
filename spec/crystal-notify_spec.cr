@@ -1,14 +1,14 @@
 require "./spec_helper"
 
 describe Notify::Manager do
-  describe "new" do
+  describe "::new" do
     it "initializes the library" do
       man = Notify::Manager.new("CrystalNotify")
       man.initialized?.should be_true
     end
   end
 
-  describe "app_name" do
+  describe "#app_name" do
     it "gets the app name" do
       app_name = "CrystalNotify"
       man = Notify::Manager.new(app_name)
@@ -16,7 +16,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "app_name=" do
+  describe "#app_name=" do
     it "sets the app name" do
       app_name = "HeartOfGold"
       man = Notify::Manager.new("CrystalNotify")
@@ -25,7 +25,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "server_caps" do
+  describe "#server_caps" do
     it "gets the notification server capabilities" do
       man = Notify::Manager.new("CrystalNotify")
       caps = man.server_caps
@@ -33,7 +33,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "server_info" do
+  describe "#server_info" do
     it "gets the notification server informations" do
       man = Notify::Manager.new("CrystalNotify")
       infos = man.server_info
@@ -41,7 +41,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "notify" do
+  describe "#notify" do
     it "shows a basic notification" do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
@@ -56,7 +56,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "app_name_deep" do
+  describe "#app_name_deep" do
     it "updates all notification's app-name from the manager" do
       man = Notify::Manager.new("CrystalNotify")
       10.times do
@@ -74,7 +74,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "count" do
+  describe "#count" do
     it "checks the amount of notifications in the manager" do
       man = Notify::Manager.new("CrystalNotify")
       42.times do
@@ -88,7 +88,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "[]" do
+  describe "#[]" do
     it "accesses a specific index in the notification manager" do
       man = Notify::Manager.new("CrystalNotify")
       10.times do |i|
@@ -102,7 +102,7 @@ describe Notify::Manager do
     end
   end
 
-  describe "clear" do
+  describe "#clear" do
     it "clears the content of the manager" do
       man = Notify::Manager.new("CrystalNotify")
       10.times do
@@ -120,7 +120,7 @@ describe Notify::Manager do
 end
 
 describe Notify::Notification do
-  describe "summary=" do
+  describe "#summary=" do
     it "updates the notification summary" do
       man = Notify::Manager.new("CrystalNotify")
       bad_summary = "YOU SHOULDN'T SEE THIS"
@@ -138,7 +138,7 @@ describe Notify::Notification do
     end
   end
 
-  describe "body=" do
+  describe "#body=" do
     it "updates the notification body" do
       man = Notify::Manager.new("CrystalNotify")
       bad_body = "YOU SHOULDN'T SEE THIS"
@@ -156,7 +156,7 @@ describe Notify::Notification do
     end
   end
 
-  describe "icon=" do
+  describe "#icon=" do
     it "updates the notification icon with a string" do
       man = Notify::Manager.new("CrystalNotify")
       bad_icon = "dialog-no"
@@ -174,7 +174,7 @@ describe Notify::Notification do
     end
   end
 
-  describe "closed_reason" do
+  describe "#closed_reason" do
     it "checks the closed_reason of the notification" do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
@@ -192,7 +192,7 @@ describe Notify::Notification do
     end
   end
 
-  describe "same?" do
+  describe "#same?" do
     it "checks if two notifications are the same based on their libnotify struct" do
       man = Notify::Manager.new("CrystalNotify")
       notif_one = man.notify(
@@ -215,18 +215,20 @@ describe Notify::Notification do
     end
   end
 
-  it "checks that a notification can be shown only once" do
-    man = Notify::Manager.new("CrystalNotify")
-    notif = man.notify(
+  describe "misc" do
+    it "checks that a notification can be shown only once" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
       "Multiple calls to #show",
       "This is the first and only time you should see me.",
       "gtk-about"
-    )
-    notif.should_not be(nil)
-    if notif
-      notif.show.should be_true
-      10.times do
-        notif.show.should be_false
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.show.should be_true
+        10.times do
+          notif.show.should be_false
+        end
       end
     end
   end

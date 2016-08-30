@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-@[Link("notify")]
+@[Link(ldflags: "`pkg-config --libs libnotify`")]
 lib LibNotify
   struct Error
     domain  : UInt32
