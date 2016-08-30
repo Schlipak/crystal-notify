@@ -16,5 +16,13 @@ addons:
       - libgtk2.0-dev
       - libnotify-dev
 before_install:
+  - cd /tmp
+  - git clone https://github.com/sboli/twmn.git
+  - cd twmn/
+  - apt-get install qt4-qmake libqt4-dev libboost1.49-dev libdbus-1-dev libxext-dev libboost-program-options1.49-dev libboost-system1.49-dev
+  - qmake
+  - make
+  - make install
+  - twmnd &
   - sh -e /etc/init.d/xvfb start
   - sleep 3
