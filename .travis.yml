@@ -17,15 +17,13 @@ addons:
       - libnotify-dev
 before_install:
   - cd /tmp
-  - git clone https://github.com/sboli/twmn.git
-  - cd twmn/
+  - git clone https://github.com/halhen/statnot
+  - cd statnot/
   - sudo apt-get update
-  - sudo apt-get install qt4-qmake libqt4-dev libdbus-1-dev libxext-dev libboost-all-dev
-  - qmake
-  - make
+  - sudo apt-get install python dbus-python pygtk
   - sudo make install
   - cd /tmp
-  - rm -rf twmn/
-  - twmnd &
+  - rm -rf statnot/
   - sh -e /etc/init.d/xvfb start
   - sleep 3
+  - statnot &
