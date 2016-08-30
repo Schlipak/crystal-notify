@@ -4,6 +4,7 @@
 # @Last modified by:   schlipak
 # @Last modified time: 30-Aug-2016
 
+dist: trusty
 language: crystal
 sudo: required
 crystal:
