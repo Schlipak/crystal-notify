@@ -20,7 +20,7 @@ before_install:
   - git clone https://github.com/halhen/statnot
   - cd statnot/
   - sudo apt-get update
-  - sudo apt-get install python dbus-python pygtk
+  - sudo apt-get install python2 python-gtk2-dev
   - sudo make install
   - cd /tmp
   - rm -rf statnot/
