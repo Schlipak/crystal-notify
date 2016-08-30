@@ -18,7 +18,7 @@ addons:
       - libnotify-dev
 before_install:
   - sudo apt-get update
-  - sudo apt-get install python-gtk2-dev libdbus-1-dev libdbus-glib-1-dev
+  - sudo apt-get install python-gtk2-dev python-gobject-2-dev libdbus-1-dev libdbus-glib-1-dev
   - pip install --upgrade pip
   - pip install dbus-python numpy
   - cd /tmp
