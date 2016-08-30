@@ -8,15 +8,16 @@ lib LibNotify
     message : LibC::Char*
   end
 
+  # The Notification struct is opaque
+  #
+  # Do not *actually* try to access these, it *will* result in a Segfault
   struct Notification
-    # Struct is opaque
-    #
-    # app_name      : LibC::Char*
-    # body          : LibC::Char*
-    # closed_reason : Int32
-    # icon_name     : LibC::Char*
-    # id            : Int32
-    # summary       : LibC::Char*
+    app_name      : LibC::Char*
+    body          : LibC::Char*
+    closed_reason : Int32
+    icon_name     : LibC::Char*
+    id            : Int32
+    summary       : LibC::Char*
   end
 
   enum Timeout

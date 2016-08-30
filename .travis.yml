@@ -18,8 +18,8 @@ addons:
       - libnotify-dev
 before_install:
   - sudo apt-get update
-  - sudo apt-get install python-gtk2-dev libdbus-1-dev libdbus-glib-1-dev
-  - pip install dbus-python
+  - sudo apt-get install libdbus-1-dev libdbus-glib-1-dev
+  - pip install dbus-python PyGTK
   - cd /tmp
   - git clone https://github.com/halhen/statnot
   - cd statnot/
