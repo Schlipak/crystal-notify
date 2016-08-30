@@ -8,4 +8,7 @@ language: crystal
 sudo: required
 before_install:
   - "sudo apt-get install libnotify4"
-  - "whereis libnotify libnotify4"
+  - "ls -l /usr/lib | grep 'notify.*so'"
+  - "ls -lR /usr/lib | grep 'notify.*so'"
+  - "ls -l /usr/local/lib | grep 'notify.*so'"
+  - "ls -lR /usr/local/lib | grep 'notify.*so'"

@@ -45,7 +45,7 @@ describe Notify::Manager do
     it "shows a basic notification" do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
-        "It works!",
+        "Crystal-Notify v#{Notify::VERSION}",
         "This is a basic notification issued by Crystal-Notify.",
         "dialog-ok"
       )
