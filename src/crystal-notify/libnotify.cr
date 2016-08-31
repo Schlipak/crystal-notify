@@ -1,24 +1,37 @@
 # -*- coding: utf-8 -*-
 
-@[Link(ldflags: "`pkg-config --libs libnotify`")]
-lib LibNotify
+@[Link(ldflags: "`pkg-config --libs glib-2.0`")]
+lib GLib
+  alias Pixbuf = Void
+
   struct Error
     domain  : UInt32
     code    : Int32
     message : LibC::Char*
   end
 
-  # The Notification struct is opaque
-  #
-  # Do not *actually* try to access these, it *will* result in a Segfault
-  struct Notification
-    app_name      : LibC::Char*
-    body          : LibC::Char*
-    closed_reason : Int32
-    icon_name     : LibC::Char*
-    id            : Int32
-    summary       : LibC::Char*
+  struct List end
+  struct List
+    data : Void*
+    next : List*
+    prev : List*
   end
+
+  fun signal_connect = g_signal_connect_data(
+    instance        : Void*,
+    detailed_signal : LibC::Char*,
+    c_handler       : (Void*) -> Void,
+    data            : Void*,
+    ptr             : Void*,
+    flags           : Int32
+  ) : Void*
+  fun free           = g_free(Void*) : Void
+  fun list_free      = g_list_free(List*) : Void
+end
+
+@[Link(ldflags: "`pkg-config --libs libnotify`")]
+lib LibNotify
+  alias Notification = Void
 
   enum Timeout
     Default = -1,
@@ -31,15 +44,6 @@ lib LibNotify
     Critical
   end
 
-  struct List end
-  struct List
-    data : Void*
-    next : List*
-    prev : List*
-  end
-
-  alias Pixbuf = Void*
-
   fun init            = notify_init(
     app_name : LibC::Char*
   ) : Bool
@@ -50,7 +54,7 @@ lib LibNotify
   fun set_app_name    = notify_set_app_name(
     app_name : LibC::Char*
   ) : Void
-  fun get_server_caps = notify_get_server_caps() : List*
+  fun get_server_caps = notify_get_server_caps() : GLib::List*
   fun get_server_info = notify_get_server_info(
     ret_name         : LibC::Char**,
     ret_vendor       : LibC::Char**,
@@ -71,18 +75,18 @@ lib LibNotify
   ) : Bool
   fun notif_show              = notify_notification_show(
     notification : Notification*,
-    error        : Error**
+    error        : GLib::Error*
   ) : Bool
   fun notif_close             = notify_notification_close(
     notification : Notification*,
-    error        : Error**
+    error        : GLib::Error*
   ) : Bool
   fun notif_get_closed_reason = notify_notification_get_closed_reason(
     notification : Notification*
   ) : Int32
   fun notif_set_image_pixbuf  = notify_notification_set_image_from_pixbuf(
     notification : Notification*,
-    pixbuf       : Pixbuf
+    pixbuf       : GLib::Pixbuf*
   ) : Void
   fun notif_set_app_name      = notify_notification_set_app_name(
     notification : Notification*,
