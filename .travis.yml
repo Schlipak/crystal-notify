@@ -39,7 +39,13 @@ before_install:
   - make install
   - cd /tmp
   - git clone https://github.com/halhen/statnot
-  - cd statnot/
+  - cd /home/travis/virtualenv/python$TRAVIS_PYTHON_VERSION/
+  - mkdir dist-packages/
+  - cd dist-packages/
+  - ln -s /usr/lib/python2.7/dist-packages/glib/ glib
+  - ln -s /usr/lib/python2.7/dist-packages/gobject/ gobject
+  - ln -s /usr/lib/python2.7/dist-packages/gtk-2.0* gtk-2.0
+  - cd /tmp/statnot/
   - sh -e /etc/init.d/xvfb start
   - sleep 3
   - touch ~/.statusline.sh
