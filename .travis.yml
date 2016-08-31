@@ -40,10 +40,10 @@ before_install:
   - cd /tmp
   - git clone https://github.com/halhen/statnot
   - cd /home/travis/virtualenv/python$TRAVIS_PYTHON_VERSION/
-  - mkdir dist-packages/
-  - cd dist-packages/
-  - ln -s /usr/lib/python2.7/dist-packages/glib/ glib
-  - ln -s /usr/lib/python2.7/dist-packages/gobject/ gobject
+  - mkdir -p venv/lib/python$TRAVIS_PYTHON_VERSION/dist-packages/
+  - cd venv/lib/python$TRAVIS_PYTHON_VERSION/dist-packages/
+  - ln -s /usr/lib/python$TRAVIS_PYTHON_VERSION/dist-packages/glib* .
+  - ln -s /usr/lib/python$TRAVIS_PYTHON_VERSION/dist-packages/gobject* .
   - cd /tmp/statnot/
   - sh -e /etc/init.d/xvfb start
   - sleep 3
