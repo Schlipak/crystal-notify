@@ -97,6 +97,7 @@ class Notify::Manager
   def server_caps
     caps = [] of String
     head = LibNotify.get_server_caps
+    return caps unless head
     node = head
     while node.value.next
       caps << String.new(node.value.data as LibC::Char*)
