@@ -96,11 +96,19 @@ class Notify::Manager
   # ```
   def server_caps
     caps = [] of String
-    strukt = LibNotify.get_server_caps.value
-    while strukt.next
-      caps << String.new(strukt.data as LibC::Char*)
-      strukt = strukt.next.value
+    head = LibNotify.get_server_caps
+    node = head
+    while node.value.next
+      caps << String.new(node.value.data as LibC::Char*)
+      node = node.value.next
     end
+    node = head
+    while node.value.next
+      nexxt = node.value.next
+      GLib.free(node.value.data)
+      node = nexxt
+    end
+    GLib.list_free(head)
     caps
   end
 
@@ -121,12 +129,19 @@ class Notify::Manager
       out spec_version
     )
 
-    {
-      name:         String.new(name),
-      vendor:       String.new(vendor),
-      version:      String.new(version),
-      spec_version: String.new(spec_version)
+    infos = {
+      name:         (name ? String.new(name) : ""),
+      vendor:       (vendor ? String.new(vendor) : ""),
+      version:      (version ? String.new(version) : ""),
+      spec_version: (spec_version ? String.new(spec_version) : "")
     }
+
+    GLib.free(name)
+    GLib.free(vendor)
+    GLib.free(version)
+    GLib.free(spec_version)
+
+    infos
   end
 
   # Creates a new notification
