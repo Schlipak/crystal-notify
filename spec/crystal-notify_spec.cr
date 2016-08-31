@@ -174,6 +174,44 @@ describe Notify::Notification do
     end
   end
 
+  describe "#close" do
+    it "closes the notification" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
+        "Test #close",
+        "You should not see this notification, unless your notification server does not support closing the notification programmatically",
+        "window-close"
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.show.should be_true
+        notif.state.should eq(Notify::Notification::State::Shown)
+        notif.close
+        notif.state.should eq(Notify::Notification::State::Closed)
+      end
+    end
+  end
+
+  describe "#on_close" do
+    it "adds a callback on notification close" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
+        "Test #on_close callback",
+        "This should print a message to the terminal when closed",
+        "object-rotate-left"
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.on_close ->(notif : Void*) do
+          notif = notif as Notify::Notification
+          STDERR.puts notif.closed_reason
+          STDERR.puts "Hi, if you see me it means #on_close works!"
+        end
+        notif.show.should be_true
+      end
+    end
+  end
+
   describe "#closed_reason" do
     it "checks the closed_reason of the notification" do
       man = Notify::Manager.new("CrystalNotify")
