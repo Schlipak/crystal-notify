@@ -8,7 +8,7 @@ class Notify::Notification
   class InstantiationException < Exception
   end
 
-  # :nodoc:
+  # The Notification state
   enum State
     Hidden = 0,
     Shown,
@@ -57,6 +57,7 @@ class Notify::Notification
   getter summary
   getter body
   getter icon
+  getter state
   getter timeout
 
   # Sets the notification summary and updates
@@ -155,14 +156,16 @@ class Notify::Notification
   #   - *Bool*
   def show
     return false if @state >= State::Shown
-    ret = LibNotify.notif_show(
-      @lib_notif,
-      Pointer(LibNotify::Error*).null
-    )
-    if ret
+    err = GLib::Error.new
+    if LibNotify.notif_show(@lib_notif, pointerof(err))
       @state = State::Shown
+      true
+    else
+      unless err.domain == 0
+        STDERR.puts String.new(err.message)
+      end
+      false
     end
-    ret
   end
 
   # Closes the notification
@@ -170,11 +173,29 @@ class Notify::Notification
   # *Returns*   :
   #   - *Bool*
   def close
-    LibNotify.notif_close(
-      @lib_notif,
-      Pointer(LibNotify::Error*).null
+    return false if @state == State::Closed
+    err = GLib::Error.new
+    if LibNotify.notif_close(@lib_notif, pointerof(err))
+      @state = State::Closed
+      true
+    else
+      unless err.domain == 0
+        STDERR.puts String.new(err.message)
+      end
+      false
+    end
+  end
+  
+  # :nodoc:
+  def on_close(callback : Proc)
+    GLib.signal_connect(
+    @lib_notif,
+    "closed",
+    callback,
+    self as Void*,
+    Pointer(Void).null,
+    0
     )
-    @state = State::Closed
   end
 
   # **FIXME**: Always returns -1 since we don't have access to
