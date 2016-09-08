@@ -16,7 +16,8 @@ class Notify::Notification
   end
 
   @lib_pointer : LibNotify::Notification*
-  @state  : State
+  @pixbuf      : GdkPixbuf::Pixbuf*
+  @state       : State
 
   # Creates a new Notification
   #
@@ -31,10 +32,16 @@ class Notify::Notification
 
     @state = State::Hidden
     @timeout = LibNotify::Timeout::Default
+    @pixbuf = Pointer(GdkPixbuf::Pixbuf).null
     @lib_pointer = LibNotify.notif_new(summary, body, icon)
     if @lib_pointer.null?
       raise InstantiationException.new("Error while creating instance of libnotify notification")
     end
+  end
+
+  # :nodoc:
+  def finalize
+    free_pixbuf
   end
 
   protected getter lib_pointer
@@ -139,9 +146,18 @@ class Notify::Notification
       end
       return false
     end
+    free_pixbuf
     self.icon = ""
-    LibNotify.notif_set_image_pixbuf(@lib_pointer, pixbuf)
+    @pixbuf = pixbuf
+    LibNotify.notif_set_image_pixbuf(@lib_pointer, @pixbuf)
     true
+  end
+
+  # :nodoc:
+  private def free_pixbuf
+    return if @pixbuf.null?
+    LibGObject.unref(@pixbuf)
+    @pixbuf = Pointer(GdkPixbuf::Pixbuf).null
   end
 
   # Sets the current application name

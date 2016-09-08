@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 
-@[Link(ldflags: "`pkg-config --libs glib-2.0`")]
+@[Link("gobject-2.0")]
+lib LibGObject
+  alias GObject = Void
+
+  fun unref = g_object_unref(
+    object : GObject*
+  ) : Void
+end
+
+@[Link("glib-2.0")]
 lib GLib
   struct Error
     domain  : UInt32
@@ -29,7 +38,7 @@ end
 
 @[Link("gdk_pixbuf-2.0")]
 lib GdkPixbuf
-  alias Pixbuf = Void
+  alias Pixbuf = LibGObject::GObject
 
   fun new_from_file = gdk_pixbuf_new_from_file(
     filename : LibC::Char*,
@@ -37,9 +46,9 @@ lib GdkPixbuf
   ) : Pixbuf*
 end
 
-@[Link(ldflags: "`pkg-config --libs libnotify`")]
+@[Link("libnotify")]
 lib LibNotify
-  alias Notification = Void
+  alias Notification = LibGObject::GObject
 
   enum Timeout
     Default = -1,
