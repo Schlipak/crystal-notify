@@ -50,6 +50,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Notification/State" data-name="notify::notification::state">
+      <a href="../Notify/Notification/State.html">State</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -81,7 +86,7 @@
 
   <p>The Notification class</p>
 
-<p>Encapsulates the <code>LibNotify::Notification</code> struct</p>
+<p>Encapsulates the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p>
 
 
 
@@ -99,7 +104,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L6" target="_blank">crystal-notify/notification.cr</a>
+      <a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L6" target="_blank">crystal-notify/notification.cr</a>
     
     <br/>
   
@@ -145,7 +150,7 @@
       <li class="entry-summary">
         <a href="#body%3D%28body%3AString%29-instance-method" class="signature"><strong>#body=</strong>(body : String)</a>
         
-          <div class="summary"><p>Sets the notification body and updates the <code>LibNotify::Notification</code> struct</p></div>
+          <div class="summary"><p>Sets the notification body and updates the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p></div>
         
       </li>
     
@@ -171,7 +176,14 @@
       <li class="entry-summary">
         <a href="#icon%3D%28icon%3AString%29-instance-method" class="signature"><strong>#icon=</strong>(icon : String)</a>
         
-          <div class="summary"><p>Sets the notification icon and updates the <code>LibNotify::Notification</code> struct</p></div>
+          <div class="summary"><p>Sets the notification icon and updates the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#icon_load%28filename%3AString%29-instance-method" class="signature"><strong>#icon_load</strong>(filename : String)</a>
+        
+          <div class="summary"><p>Sets the notification icon from a filename</p></div>
         
       </li>
     
@@ -190,6 +202,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#state%3ANotify%3A%3ANotification%3A%3AState-instance-method" class="signature"><strong>#state</strong> : Notify::Notification::State</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#summary%3AString-instance-method" class="signature"><strong>#summary</strong> : String</a>
         
       </li>
@@ -197,7 +214,7 @@
       <li class="entry-summary">
         <a href="#summary%3D%28summary%3AString%29-instance-method" class="signature"><strong>#summary=</strong>(summary : String)</a>
         
-          <div class="summary"><p>Sets the notification summary and updates the <code>LibNotify::Notification</code> struct</p></div>
+          <div class="summary"><p>Sets the notification summary and updates the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p></div>
         
       </li>
     
@@ -256,7 +273,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -277,7 +294,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -299,7 +316,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -315,7 +332,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -329,7 +346,7 @@
       </div>
       
         <div class="doc"><p>Sets the notification body and updates
-the <code>LibNotify::Notification</code> struct</p>
+the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p>
 
 <p><em>Args</em>    :</p>
 
@@ -342,7 +359,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L88" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -364,7 +381,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L172" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L200" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -389,7 +406,7 @@ signal_connect to use the 'closed' signal.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L187" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L233" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -405,7 +422,7 @@ signal_connect to use the 'closed' signal.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -419,7 +436,7 @@ signal_connect to use the 'closed' signal.</p>
       </div>
       
         <div class="doc"><p>Sets the notification icon and updates
-the <code>LibNotify::Notification</code> struct</p>
+the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p>
 
 <p><em>Args</em>    :</p>
 
@@ -432,7 +449,40 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L106" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="icon_load&#40;filename:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>icon_load</strong>(filename : String)
+
+        <a class="method-permalink" href="#icon_load%28filename%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Sets the notification icon from a filename</p>
+
+<p>The file path must be accessible, and the file must
+be a valid image.</p>
+
+<p>Internally, the file is loaded using
+<code>gdk_pixbuf_new_from_file</code> from the libgdk_pixbuf.
+Please make sure your image is compatible with this library.</p>
+
+<p><em>Args</em>    :</p>
+
+<ul><li><em>filename</em> : String</li></ul></ul>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>Bool</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -462,7 +512,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -484,7 +534,23 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L156" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L182" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="state:Notify::Notification::State-instance-method">
+      <div class="signature">
+        
+        def <strong>state</strong> : <a href="../Notify/Notification/State.html">Notify::Notification::State</a>
+
+        <a class="method-permalink" href="#state%3ANotify%3A%3ANotification%3A%3AState-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -500,7 +566,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -514,7 +580,7 @@ the <code>LibNotify::Notification</code> struct</p>
       </div>
       
         <div class="doc"><p>Sets the notification summary and updates
-the <code>LibNotify::Notification</code> struct</p>
+the <code><a href="../LibNotify/Notification.html">LibNotify::Notification</a></code> struct</p>
 
 <p><em>Args</em>    :</p>
 
@@ -527,7 +593,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -543,7 +609,7 @@ the <code>LibNotify::Notification</code> struct</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -576,7 +642,7 @@ notification server if not supported</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/Schlipak/crystal-notify/blob/8c8667fb842cb7181a978ca9192fa9969a82ff3b/src/crystal-notify/notification.cr#L147" target="_blank">View source</a>]
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/bda57cf6d89d76b8bbcd2f781836b6d1f74f814d/src/crystal-notify/notification.cr#L173" target="_blank">View source</a>]
         
       </div>
     </div>
