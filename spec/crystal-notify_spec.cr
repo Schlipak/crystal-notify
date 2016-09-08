@@ -192,7 +192,7 @@ describe Notify::Notification do
       )
       notif.should_not be(nil)
       if notif
-        notif.icon_load("./res/alert.png").should be_true
+        notif.icon_load("./res/icon.svg").should be_true
         notif.icon.should eq("")
         notif.show.should be_true
       end
