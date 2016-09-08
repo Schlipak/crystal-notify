@@ -182,6 +182,23 @@ describe Notify::Notification do
     end
   end
 
+  describe "#icon_load" do
+    it "updates the notification icon from a file" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
+        "Crystal-Notify",
+        "The icon was loaded from a file.",
+        "dialog-no"
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.icon_load("./res/alert.png").should be_true
+        notif.icon.should eq("")
+        notif.show.should be_true
+      end
+    end
+  end
+
   describe "#close" do
     it "closes the notification" do
       man = Notify::Manager.new("CrystalNotify")

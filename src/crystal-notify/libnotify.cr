@@ -2,8 +2,6 @@
 
 @[Link(ldflags: "`pkg-config --libs glib-2.0`")]
 lib GLib
-  alias Pixbuf = Void
-
   struct Error
     domain  : UInt32
     code    : Int32
@@ -27,6 +25,16 @@ lib GLib
   ) : Void*
   fun free           = g_free(Void*) : Void
   fun list_free      = g_list_free(List*) : Void
+end
+
+@[Link("gdk_pixbuf-2.0")]
+lib GdkPixbuf
+  alias Pixbuf = Void
+
+  fun new_from_file = gdk_pixbuf_new_from_file(
+    filename : LibC::Char*,
+    error    : GLib::Error**
+  ) : Pixbuf*
 end
 
 @[Link(ldflags: "`pkg-config --libs libnotify`")]
@@ -75,18 +83,18 @@ lib LibNotify
   ) : Bool
   fun notif_show              = notify_notification_show(
     notification : Notification*,
-    error        : GLib::Error*
+    error        : GLib::Error**
   ) : Bool
   fun notif_close             = notify_notification_close(
     notification : Notification*,
-    error        : GLib::Error*
+    error        : GLib::Error**
   ) : Bool
   fun notif_get_closed_reason = notify_notification_get_closed_reason(
     notification : Notification*
   ) : Int32
   fun notif_set_image_pixbuf  = notify_notification_set_image_from_pixbuf(
     notification : Notification*,
-    pixbuf       : GLib::Pixbuf*
+    pixbuf       : GdkPixbuf::Pixbuf*
   ) : Void
   fun notif_set_app_name      = notify_notification_set_app_name(
     notification : Notification*,

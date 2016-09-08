@@ -114,9 +114,34 @@ class Notify::Notification
     false
   end
 
-  # :nodoc:
-  def icon=(pixbuf : LibNotify::Pixbuf)
+  # Sets the notification icon from a filename
+  #
+  # The file path must be accessible, and the file must
+  # be a valid image.
+  #
+  # Internally, the file is loaded using
+  # `gdk_pixbuf_new_from_file` from the libgdk_pixbuf.
+  # Please make sure your image is compatible with this library.
+  #
+  # *Args*    :
+  #   - *filename* : String
+  # *Returns* :
+  #   - *Bool*
+  def icon_load(filename : String)
+    err = Pointer(GLib::Error).null
+    pixbuf = GdkPixbuf.new_from_file(
+      filename,
+      pointerof(err)
+    )
+    if pixbuf.null?
+      if !err.null? && err.value.domain != 0
+        STDERR.puts String.new(err.value.message)
+      end
+      return false
+    end
+    self.icon = ""
     LibNotify.notif_set_image_pixbuf(@lib_pointer, pixbuf)
+    true
   end
 
   # Sets the current application name
@@ -156,13 +181,13 @@ class Notify::Notification
   #   - *Bool*
   def show
     return false if @state >= State::Shown
-    err = GLib::Error.new
+    err = Pointer(GLib::Error).null
     if LibNotify.notif_show(@lib_pointer, pointerof(err))
       @state = State::Shown
       true
     else
-      unless err.domain == 0
-        STDERR.puts String.new(err.message)
+      if !err.null? && err.value.domain != 0
+        STDERR.puts String.new(err.value.message)
       end
       false
     end
@@ -174,13 +199,13 @@ class Notify::Notification
   #   - *Bool*
   def close
     return false if @state == State::Closed
-    err = GLib::Error.new
+    err = Pointer(GLib::Error).null
     if LibNotify.notif_close(@lib_pointer, pointerof(err))
       @state = State::Closed
       true
     else
-      unless err.domain == 0
-        STDERR.puts String.new(err.message)
+      if !err.null? && err.value.domain != 0
+        STDERR.puts String.new(err.value.message)
       end
       false
     end
