@@ -1,4 +1,4 @@
-# Crystal-Notify ![Crystal-Notify](./res/alert.png)
+# Crystal-Notify
 
 [//]: # ([![Build Status](https://travis-ci.org/Schlipak/crystal-notify.svg?branch=master)](https://travis-ci.org/Schlipak/crystal-notify))
 
