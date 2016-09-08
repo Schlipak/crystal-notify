@@ -9,6 +9,8 @@ language: crystal
 sudo: required
 crystal:
   - latest
+notifications:
+  email: false
 env:
   - DISPLAY=:99.0
 addons:
