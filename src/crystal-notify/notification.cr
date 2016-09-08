@@ -15,8 +15,8 @@ class Notify::Notification
     Closed
   end
 
-  @lib_notif : LibNotify::Notification*
-  @state     : State
+  @lib_pointer : LibNotify::Notification*
+  @state  : State
 
   # Creates a new Notification
   #
@@ -31,13 +31,13 @@ class Notify::Notification
 
     @state = State::Hidden
     @timeout = LibNotify::Timeout::Default
-    @lib_notif = LibNotify.notif_new(summary, body, icon)
-    if @lib_notif.null?
+    @lib_pointer = LibNotify.notif_new(summary, body, icon)
+    if @lib_pointer.null?
       raise InstantiationException.new("Error while creating instance of libnotify notification")
     end
   end
 
-  protected getter lib_notif
+  protected getter lib_pointer
 
   # Returns true if two notifications are the same
   #
@@ -50,7 +50,7 @@ class Notify::Notification
   # *Returns* :
   #   - *Bool*
   def same?(other : Notification)
-    @lib_notif == other.lib_notif
+    @lib_pointer == other.lib_pointer
   end
 
   getter app_name
@@ -69,7 +69,7 @@ class Notify::Notification
   #   - *Bool*
   def summary=(summary : String)
     ret = LibNotify.notif_update(
-      @lib_notif, summary, @body, @icon
+      @lib_pointer, summary, @body, @icon
     )
     if ret
       @summary = summary
@@ -87,7 +87,7 @@ class Notify::Notification
   #   - *Bool*
   def body=(body : String)
     ret = LibNotify.notif_update(
-      @lib_notif, @summary, body, @icon
+      @lib_pointer, @summary, body, @icon
     )
     if ret
       @body = body
@@ -105,7 +105,7 @@ class Notify::Notification
   #   - *Bool*
   def icon=(icon : String)
     ret = LibNotify.notif_update(
-      @lib_notif, @summary, @body, icon
+      @lib_pointer, @summary, @body, icon
     )
     if ret
       @icon = icon
@@ -116,7 +116,7 @@ class Notify::Notification
 
   # :nodoc:
   def icon=(pixbuf : LibNotify::Pixbuf)
-    LibNotify.notif_set_image_pixbuf(@lib_notif, pixbuf)
+    LibNotify.notif_set_image_pixbuf(@lib_pointer, pixbuf)
   end
 
   # Sets the current application name
@@ -126,7 +126,7 @@ class Notify::Notification
   def app_name=(app_name : String)
     @app_name = app_name
     LibNotify.notif_set_app_name(
-      @lib_notif, @app_name
+      @lib_pointer, @app_name
     )
   end
 
@@ -147,7 +147,7 @@ class Notify::Notification
   #   - *timeout* : Int32
   def timeout=(time : Int32)
     @timeout = time
-    LibNotify.notif_set_timeout(@lib_notif, time)
+    LibNotify.notif_set_timeout(@lib_pointer, time)
   end
 
   # Displays the notification
@@ -157,7 +157,7 @@ class Notify::Notification
   def show
     return false if @state >= State::Shown
     err = GLib::Error.new
-    if LibNotify.notif_show(@lib_notif, pointerof(err))
+    if LibNotify.notif_show(@lib_pointer, pointerof(err))
       @state = State::Shown
       true
     else
@@ -175,7 +175,7 @@ class Notify::Notification
   def close
     return false if @state == State::Closed
     err = GLib::Error.new
-    if LibNotify.notif_close(@lib_notif, pointerof(err))
+    if LibNotify.notif_close(@lib_pointer, pointerof(err))
       @state = State::Closed
       true
     else
@@ -185,16 +185,16 @@ class Notify::Notification
       false
     end
   end
-  
+
   # :nodoc:
   def on_close(callback : Proc)
     GLib.signal_connect(
-    @lib_notif,
-    "closed",
-    callback,
-    self as Void*,
-    Pointer(Void).null,
-    0
+      @lib_pointer,
+      "closed",
+      callback,
+      self as Void*,
+      Pointer(Void).null,
+      0
     )
   end
 
@@ -206,6 +206,6 @@ class Notify::Notification
   # *Returns*   :
   #   - *Int32*
   def closed_reason
-    LibNotify.notif_get_closed_reason(@lib_notif)
+    LibNotify.notif_get_closed_reason(@lib_pointer)
   end
 end
