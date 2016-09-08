@@ -11,7 +11,6 @@ describe Notify::Manager do
   describe "#finalize" do
     it "frees the library resources" do
       man = Notify::Manager.new("CrystalNotify")
-      man.initialized?.should be_true
       man.finalize
       man.initialized?.should be_false
     end
