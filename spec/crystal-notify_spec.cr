@@ -8,6 +8,15 @@ describe Notify::Manager do
     end
   end
 
+  describe "#finalize" do
+    it "frees the library resources" do
+      man = Notify::Manager.new("CrystalNotify")
+      man.initialized?.should be_true
+      man.finalize
+      man.initialized?.should be_false
+    end
+  end
+
   describe "#app_name" do
     it "gets the app name" do
       app_name = "CrystalNotify"
