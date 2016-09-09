@@ -60,11 +60,41 @@ class Notify::Notification
     @lib_pointer == other.lib_pointer
   end
 
+  # Returns the app name this Notification belongs to
+  #
+  # *Returns* :
+  #   - *String*
   getter app_name
+
+  # Returns the notification summary
+  #
+  # *Returns* :
+  #   - *String*
   getter summary
+
+  # Returns the notification body
+  #
+  # *Returns* :
+  #   - *String*
   getter body
+
+  # Returns the notification icon or an empty string if
+  # the icon is loaded using #icon_load
+  #
+  # *Returns* :
+  #   - *String*
   getter icon
+
+  # Returns the notification state
+  #
+  # *Returns* :
+  #   - *Notify::Notification::State*
   getter state
+
+  # Returns the notification timeout
+  #
+  # *Returns* :
+  #   - *LibNotify::Timeout*
   getter timeout
 
   # Sets the notification summary and updates
