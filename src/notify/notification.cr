@@ -94,7 +94,7 @@ class Notify::Notification
   # Returns the notification timeout
   #
   # *Returns* :
-  #   - *LibNotify::Timeout*
+  #   - *Int32 | LibNotify::Timeout*
   getter timeout
 
   # Sets the notification summary and updates
