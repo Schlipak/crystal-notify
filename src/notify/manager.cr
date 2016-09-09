@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-require "./libnotify"
-
 # The notification manager class
 #
 # This is an abstraction of the several libnotify functions,
@@ -106,10 +104,10 @@ class Notify::Manager
     node = head
     while node.value.next
       nexxt = node.value.next
-      GLib.free(node.value.data)
+      LibGLib.free(node.value.data)
       node = nexxt
     end
-    GLib.list_free(head)
+    LibGLib.list_free(head)
     caps
   end
 
@@ -137,10 +135,10 @@ class Notify::Manager
       spec_version: (spec_version ? String.new(spec_version) : "")
     }
 
-    GLib.free(name)
-    GLib.free(vendor)
-    GLib.free(version)
-    GLib.free(spec_version)
+    LibGLib.free(name)
+    LibGLib.free(vendor)
+    LibGLib.free(version)
+    LibGLib.free(spec_version)
 
     infos
   end

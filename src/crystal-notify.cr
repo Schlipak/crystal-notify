@@ -1,1 +1,2 @@
-require "./crystal-notify/*"
+require "./libs/*"
+require "./notify/*"

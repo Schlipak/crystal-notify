@@ -16,7 +16,7 @@ class Notify::Notification
   end
 
   @lib_pointer : LibNotify::Notification*
-  @pixbuf      : GdkPixbuf::Pixbuf*
+  @pixbuf      : LibGdk::Pixbuf*
   @state       : State
 
   # Creates a new Notification
@@ -32,7 +32,7 @@ class Notify::Notification
 
     @state = State::Hidden
     @timeout = LibNotify::Timeout::Default
-    @pixbuf = Pointer(GdkPixbuf::Pixbuf).null
+    @pixbuf = Pointer(LibGdk::Pixbuf).null
     @lib_pointer = LibNotify.notif_new(summary, body, icon)
     if @lib_pointer.null?
       raise InstantiationException.new("Error while creating instance of libnotify notification")
@@ -135,8 +135,8 @@ class Notify::Notification
   # *Returns* :
   #   - *Bool*
   def icon_load(filename : String)
-    err = Pointer(GLib::Error).null
-    pixbuf = GdkPixbuf.new_from_file(
+    err = Pointer(LibGLib::Error).null
+    pixbuf = LibGdk.new_from_file(
       filename,
       pointerof(err)
     )
@@ -157,7 +157,7 @@ class Notify::Notification
   private def free_pixbuf
     return if @pixbuf.null?
     LibGObject.unref(@pixbuf)
-    @pixbuf = Pointer(GdkPixbuf::Pixbuf).null
+    @pixbuf = Pointer(LibGdk::Pixbuf).null
   end
 
   # Sets the current application name
@@ -197,7 +197,7 @@ class Notify::Notification
   #   - *Bool*
   def show
     return false if @state >= State::Shown
-    err = Pointer(GLib::Error).null
+    err = Pointer(LibGLib::Error).null
     if LibNotify.notif_show(@lib_pointer, pointerof(err))
       @state = State::Shown
       true
@@ -215,7 +215,7 @@ class Notify::Notification
   #   - *Bool*
   def close
     return false if @state == State::Closed
-    err = Pointer(GLib::Error).null
+    err = Pointer(LibGLib::Error).null
     if LibNotify.notif_close(@lib_pointer, pointerof(err))
       @state = State::Closed
       true
@@ -229,7 +229,7 @@ class Notify::Notification
 
   # :nodoc:
   def on_close(callback : Proc)
-    GLib.signal_connect(
+    LibGLib.signal_connect(
       @lib_pointer,
       "closed",
       callback,

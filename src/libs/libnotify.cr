@@ -1,50 +1,8 @@
 # -*- coding: utf-8 -*-
 
-@[Link("gobject-2.0")]
-lib LibGObject
-  alias GObject = Void
-
-  fun unref = g_object_unref(
-    object : GObject*
-  ) : Void
-end
-
-@[Link("glib-2.0")]
-lib GLib
-  struct Error
-    domain  : UInt32
-    code    : Int32
-    message : LibC::Char*
-  end
-
-  struct List end
-  struct List
-    data : Void*
-    next : List*
-    prev : List*
-  end
-
-  fun signal_connect = g_signal_connect_data(
-    instance        : Void*,
-    detailed_signal : LibC::Char*,
-    c_handler       : (Void*) -> Void,
-    data            : Void*,
-    ptr             : Void*,
-    flags           : Int32
-  ) : Void*
-  fun free           = g_free(Void*) : Void
-  fun list_free      = g_list_free(List*) : Void
-end
-
-@[Link("gdk_pixbuf-2.0")]
-lib GdkPixbuf
-  alias Pixbuf = LibGObject::GObject
-
-  fun new_from_file = gdk_pixbuf_new_from_file(
-    filename : LibC::Char*,
-    error    : GLib::Error**
-  ) : Pixbuf*
-end
+require "./libgobject"
+require "./libglib"
+require "./libgdk"
 
 @[Link("libnotify")]
 lib LibNotify
@@ -71,7 +29,7 @@ lib LibNotify
   fun set_app_name    = notify_set_app_name(
     app_name : LibC::Char*
   ) : Void
-  fun get_server_caps = notify_get_server_caps() : GLib::List*
+  fun get_server_caps = notify_get_server_caps() : LibGLib::List*
   fun get_server_info = notify_get_server_info(
     ret_name         : LibC::Char**,
     ret_vendor       : LibC::Char**,
@@ -92,18 +50,18 @@ lib LibNotify
   ) : Bool
   fun notif_show              = notify_notification_show(
     notification : Notification*,
-    error        : GLib::Error**
+    error        : LibGLib::Error**
   ) : Bool
   fun notif_close             = notify_notification_close(
     notification : Notification*,
-    error        : GLib::Error**
+    error        : LibGLib::Error**
   ) : Bool
   fun notif_get_closed_reason = notify_notification_get_closed_reason(
     notification : Notification*
   ) : Int32
   fun notif_set_image_pixbuf  = notify_notification_set_image_from_pixbuf(
     notification : Notification*,
-    pixbuf       : GdkPixbuf::Pixbuf*
+    pixbuf       : LibGdk::Pixbuf*
   ) : Void
   fun notif_set_app_name      = notify_notification_set_app_name(
     notification : Notification*,
