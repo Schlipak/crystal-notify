@@ -1,4 +1,4 @@
-# Crystal-Notify
+# Crystal-Notify <img src="./res/icon.svg">
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
 
