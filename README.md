@@ -1,4 +1,4 @@
-# Crystal-Notify <img src="https://cdn.rawgit.com/Schlipak/crystal-notify/master/res/icon.svg" width="32px" height="32px"/>
+# <img src="https://cdn.rawgit.com/Schlipak/crystal-notify/master/res/icon.svg" width="32px" height="32px"/> Crystal-Notify
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
 
