@@ -111,22 +111,51 @@ class Notify::Manager
     caps
   end
 
-  # Return type for #server_info
-  alias ServerInfo = NamedTuple(
-    name:         String,
-    vendor:       String,
-    version:      String,
-    spec_version: String
-  )
+  # *TODO*: Support all capabilities
+  #
+  # Returns a textual description of a server capability
+  #
+  # *Args*    :
+  #   - *cap* : *String*
+  # *Returns* :
+  #   - *String*
+  def describe_cap(cap : String)
+    case cap
+    when "action-icons"
+      "Use icons instead of text to display actions"
+    when "actions"
+      "Add actions to a notification"
+    when "body"
+      "Specify a notification body"
+    when "body-hyperlinks"
+      "Add hyperlinks in the notification body"
+    when "body-images"
+      "Add images in the notification body"
+    when "body-markup"
+      "Use markup to style the body"
+    when "icon-multi"
+      "Display an animated icon"
+    when "icon-static"
+      "Display a static icon"
+    when "persistence"
+      "Have notifications persist until acknowledged by the user"
+    when "sound"
+      "Make a sound on notification"
+    when /x-[a-zA-Z0-9\-]+/
+      "Vendor specific capability"
+    else
+      "Unknown"
+    end
+  end
 
   # Gives some infos about the current notification server
   #
   # *Returns* :
-  #   - *Notify::Manager::ServerInfo*
+  #   - *Notify::ServerInfo*
   #
   # ```
   # man = Notify::Manager.new "MyApp"
-  # man.server_info #=> {name: "cinnamon", vendor: "GNOME", version: "3.0.7", spec_version: "1.2"}
+  # puts man.server_info
   # ```
   def server_info
     LibNotify.get_server_info(
@@ -136,19 +165,7 @@ class Notify::Manager
       out spec_version
     )
 
-    infos = {
-      name:         (name ? String.new(name) : ""),
-      vendor:       (vendor ? String.new(vendor) : ""),
-      version:      (version ? String.new(version) : ""),
-      spec_version: (spec_version ? String.new(spec_version) : "")
-    }
-
-    LibGLib.free(name)
-    LibGLib.free(vendor)
-    LibGLib.free(version)
-    LibGLib.free(spec_version)
-
-    infos
+    ServerInfo.new(name, vendor, version, spec_version)
   end
 
   # Creates a new notification
