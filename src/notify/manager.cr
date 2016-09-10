@@ -111,8 +111,6 @@ class Notify::Manager
     caps
   end
 
-  # *TODO*: Support all capabilities
-  #
   # Returns a textual description of a server capability
   #
   # *Args*    :
