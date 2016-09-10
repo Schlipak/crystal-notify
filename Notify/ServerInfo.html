@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/Schlipak/crystal-notify">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Notify::ServerInfo - github.com/Schlipak/crystal-notify</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/Schlipak/crystal-notify/Notify" data-name="notify">
+      <a href="../Notify.html">Notify</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/Schlipak/crystal-notify/Notify/Manager" data-name="notify::manager">
+      <a href="../Notify/Manager.html">Manager</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Manager/InitializationException" data-name="notify::manager::initializationexception">
+      <a href="../Notify/Manager/InitializationException.html">InitializationException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/Schlipak/crystal-notify/Notify/Notification" data-name="notify::notification">
+      <a href="../Notify/Notification.html">Notification</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Notification/InstantiationException" data-name="notify::notification::instantiationexception">
+      <a href="../Notify/Notification/InstantiationException.html">InstantiationException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/Schlipak/crystal-notify/Notify/Notification/State" data-name="notify::notification::state">
+      <a href="../Notify/Notification/State.html">State</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/Schlipak/crystal-notify/Notify/ServerInfo" data-name="notify::serverinfo">
+      <a href="../Notify/ServerInfo.html">ServerInfo</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Notify::ServerInfo
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Notify/ServerInfo.html">Notify::ServerInfo</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The notification server informations</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L4" target="_blank">notify/server_info.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28name%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cvendor%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cversion%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cspec_version%3A%3A%3APointer%28LibC%3A%3AChar%29%29-class-method" class="signature"><strong>.new</strong>(name : ::Pointer(LibC::Char), vendor : ::Pointer(LibC::Char), version : ::Pointer(LibC::Char), spec_version : ::Pointer(LibC::Char))</a>
+        
+          <div class="summary"><p>Do not initialize this class yourself, Notify::Manager#server_info does it for you.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        
+          <div class="summary"><p>Gets the notification server name</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#spec_version%3AString-instance-method" class="signature"><strong>#spec_version</strong> : String</a>
+        
+          <div class="summary"><p>Gets the minimum version of libnotify required by the notification server</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s-instance-method" class="signature"><strong>#to_s</strong></a>
+        
+          <div class="summary"><p>Returns a textual description of the notification server informations</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#vendor%3AString-instance-method" class="signature"><strong>#vendor</strong> : String</a>
+        
+          <div class="summary"><p>Gets the notification server vendor</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#version%3AString-instance-method" class="signature"><strong>#version</strong> : String</a>
+        
+          <div class="summary"><p>Gets the version of the notification server</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;name:::Pointer&#40;LibC::Char&#41;,vendor:::Pointer&#40;LibC::Char&#41;,version:::Pointer&#40;LibC::Char&#41;,spec_version:::Pointer&#40;LibC::Char&#41;&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(name : ::Pointer(LibC::Char), vendor : ::Pointer(LibC::Char), version : ::Pointer(LibC::Char), spec_version : ::Pointer(LibC::Char))
+
+        <a class="method-permalink" href="#new%28name%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cvendor%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cversion%3A%3A%3APointer%28LibC%3A%3AChar%29%2Cspec_version%3A%3A%3APointer%28LibC%3A%3AChar%29%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Do not initialize this class yourself,
+Notify::Manager#server_info does it for you.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the notification server name</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="spec_version:String-instance-method">
+      <div class="signature">
+        
+        def <strong>spec_version</strong> : String
+
+        <a class="method-permalink" href="#spec_version%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the minimum version of libnotify required
+by the notification server</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>
+
+        <a class="method-permalink" href="#to_s-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Returns a textual description of the notification
+server informations</p>
+
+<p><em>Returns</em> :</p>
+
+<ul><li><em>String</em></li></ul></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="vendor:String-instance-method">
+      <div class="signature">
+        
+        def <strong>vendor</strong> : String
+
+        <a class="method-permalink" href="#vendor%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the notification server vendor</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="version:String-instance-method">
+      <div class="signature">
+        
+        def <strong>version</strong> : String
+
+        <a class="method-permalink" href="#version%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Gets the version of the notification server</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/Schlipak/crystal-notify/blob/b88ec0d1f6ff712102287dfbab9290ca2cc46979/src/notify/server_info.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
