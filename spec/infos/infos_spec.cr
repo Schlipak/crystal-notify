@@ -15,10 +15,14 @@ describe "Server infos tests" do
     it "prints and describes the server capabilities" do
       man = Notify::Manager.new "Test"
       caps = man.server_caps
-      len = caps.max_by(&.size).size
       STDERR.puts "\nServer capabilities"
-      caps.each do |cap|
-        STDERR.puts " #{cap.ljust(len)} => #{man.describe_cap(cap)}"
+      if caps.empty?
+        STDERR.puts " (none)"
+      else
+        len = caps.max_by(&.size).size
+        caps.each do |cap|
+          STDERR.puts " #{cap.ljust(len)} => #{man.describe_cap(cap)}"
+        end
       end
       man.finalize
     end
