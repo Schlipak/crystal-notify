@@ -98,7 +98,7 @@ class Notify::Manager
     return caps unless head
     node = head
     while node.value.next
-      caps << String.new(node.value.data as LibC::Char*)
+      caps << String.new(node.value.data.as LibC::Char*)
       node = node.value.next
     end
     node = head
@@ -111,10 +111,18 @@ class Notify::Manager
     caps
   end
 
+  # Return type for #server_info
+  alias ServerInfo = NamedTuple(
+    name:         String,
+    vendor:       String,
+    version:      String,
+    spec_version: String
+  )
+
   # Gives some infos about the current notification server
   #
   # *Returns* :
-  #   - *NamedTuple(name: String, vendor: String, version: String, spec_version: String)*
+  #   - *Notify::Manager::ServerInfo*
   #
   # ```
   # man = Notify::Manager.new "MyApp"

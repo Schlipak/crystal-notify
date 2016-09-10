@@ -8,7 +8,6 @@ lib LibGLib
     message : LibC::Char*
   end
 
-  struct List end
   struct List
     data : Void*
     next : List*

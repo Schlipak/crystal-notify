@@ -158,7 +158,7 @@ describe Notify::Manager do
     it "gets the notification server capabilities" do
       man = Notify::Manager.new("CrystalNotify")
       caps = man.server_caps
-      STDERR.puts "Server capacities: #{caps}"
+      caps.should be_a(Array(String))
     end
   end
 
@@ -166,7 +166,7 @@ describe Notify::Manager do
     it "gets the notification server informations" do
       man = Notify::Manager.new("CrystalNotify")
       infos = man.server_info
-      STDERR.puts "Server infos: #{infos}"
+      infos.should be_a(Notify::Manager::ServerInfo)
     end
   end
 

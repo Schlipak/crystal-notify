@@ -263,7 +263,7 @@ class Notify::Notification
       @lib_pointer,
       "closed",
       callback,
-      self as Void*,
+      self.as Void*,
       Pointer(Void).null,
       0
     )
