@@ -173,10 +173,10 @@ class Notify::Manager
   #   - *body*    : String
   #   - *icon*    : String
   #
-  # *icon* is the GTK name for the icon you want.
-  # Check out the GTK spec to list some of them:
-  #
-  # https://developer.gnome.org/icon-naming-spec/
+  # *icon* can be:
+  #   - the GTK name for the icon you want. Check out the [GTK spec](https://developer.gnome.org/icon-naming-spec/) to list some of them.
+  #   - an absolute path to an image
+  #   - a relative path to an image (use with `expand: true`)
   def notify(
       summary : String,
       body    : String = "",
