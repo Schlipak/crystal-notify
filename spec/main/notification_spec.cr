@@ -150,7 +150,7 @@ describe Notify::Notification do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
         "Crystal-Notify",
-        "The icon was loaded from a file.",
+        "The icon was created via a GdkPixbuf.",
         "dialog-no"
       )
       notif.should_not be(nil)

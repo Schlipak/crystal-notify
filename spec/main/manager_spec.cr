@@ -152,6 +152,22 @@ describe Notify::Manager do
         notif.show.should be_true
       end
     end
+
+    it "shows a notification with a local icon" do
+      man = Notify::Manager.new("CrystalNotify")
+      icon_name = "res/icon.svg"
+      notif = man.notify(
+        "Crystal-Notify v#{Notify::VERSION}",
+        "This is a notification with expand: true",
+        icon_name,
+        expand: true
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.show.should be_true
+        notif.icon.should eq(File.expand_path(icon_name))
+      end
+    end
   end
 
   describe "#server_caps" do

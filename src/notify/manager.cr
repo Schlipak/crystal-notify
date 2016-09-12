@@ -180,9 +180,11 @@ class Notify::Manager
   def notify(
       summary : String,
       body    : String = "",
-      icon    : String = ""
+      icon    : String = "",
+      expand  : Bool = false
     )
 
+    icon = File.expand_path icon if expand
     notif = Notification.new(@app_name, summary, body, icon)
     @notifications << notif
     return notif

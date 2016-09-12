@@ -1,6 +1,9 @@
-# <img src="https://cdn.rawgit.com/Schlipak/crystal-notify/7adf48651fbf8eeadc7bfdf8ad536f5ca7b4b90a/res/icon.svg" width="56"> Crystal-Notify
+# ![](https://cdn.rawgit.com/Schlipak/crystal-notify/7adf48651fbf8eeadc7bfdf8ad536f5ca7b4b90a/res/icon.svg) Crystal-Notify
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
+
+This library is intended to be a complete binding of all functionalities available in libnotify.<br>
+For a more lightweight version, check out [libnotify.cr](https://github.com/splattael/libnotify.cr)
 
 ## Installation
 
