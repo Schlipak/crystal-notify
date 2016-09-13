@@ -16,7 +16,6 @@ class Notify::Notification
   end
 
   @lib_pointer : LibNotify::Notification*
-  @pixbuf      : LibGdk::Pixbuf*
   @state       : State
 
   # Creates a new Notification
@@ -32,16 +31,10 @@ class Notify::Notification
 
     @state = State::Hidden
     @timeout = LibNotify::Timeout::Default
-    @pixbuf = Pointer(LibGdk::Pixbuf).null
     @lib_pointer = LibNotify.notif_new(summary, body, icon)
     if @lib_pointer.null?
       raise InstantiationException.new("Error while creating instance of libnotify notification")
     end
-  end
-
-  # :nodoc:
-  def finalize
-    free_pixbuf
   end
 
   protected getter lib_pointer
@@ -79,7 +72,7 @@ class Notify::Notification
   getter body
 
   # Returns the notification icon or an empty string if
-  # the icon is loaded using #icon_load
+  # the icon is a `GdkPixbuf`
   #
   # *Returns* :
   #   - *String*
@@ -136,11 +129,20 @@ class Notify::Notification
   # Sets the notification icon and updates
   # the `LibNotify::Notification` struct
   #
+  # Just as for `Notify::Manager#notify`,
+  # you can pass in a Gtk icon name,
+  # an absolute file path, or a relative
+  # file path if you use `expand: true`
+  #
   # *Args*    :
-  #   - *icon* : String
+  #   - *icon*   : String
+  #   - *expand* : Bool
   # *Returns* :
   #   - *Bool*
-  def icon=(icon : String)
+  def icon=(icon : String, expand : Bool = false)
+    if expand
+      icon = File.expand_path(icon)
+    end
     ret = LibNotify.notif_update(
       @lib_pointer, @summary, @body, icon
     )
@@ -151,43 +153,29 @@ class Notify::Notification
     false
   end
 
-  # Sets the notification icon from a filename
+  # Sets the notification icon from a `GdkPixbuf`
   #
-  # The file path must be accessible, and the file must
-  # be a valid image.
+  # Crystal-Notify does not provide a way to create a
+  # Pixbuf.
   #
-  # Internally, the file is loaded using
-  # `gdk_pixbuf_new_from_file` from the libgdk_pixbuf.
-  # Please make sure your image is compatible with this library.
+  # You may use this method if your program
+  # uses bindings to Gtk/Gdk, otherwise please use
+  # `#icon=(icon : String, expand : Bool = false)`
+  #
+  # Since Crystal-Notify does not binds Gtk/Gdk, this
+  # method accepts a Void*. Be extremely careful what
+  # you pass in!
   #
   # *Args*    :
-  #   - *filename* : String
+  #   - *pixbuf* : Void*
   # *Returns* :
   #   - *Bool*
-  def icon_load(filename : String)
-    err = Pointer(LibGLib::Error).null
-    pixbuf = LibGdk.new_from_file(
-      filename,
-      pointerof(err)
-    )
-    if pixbuf.null?
-      if !err.null? && err.value.domain != 0
-        STDERR.puts String.new(err.value.message)
-      end
-      return false
-    end
-    free_pixbuf
+  def icon=(pixbuf : Void*)
     self.icon = ""
-    @pixbuf = pixbuf
-    LibNotify.notif_set_image_pixbuf(@lib_pointer, @pixbuf)
+    LibNotify.notif_set_image_pixbuf(
+      @lib_pointer, pixbuf
+    )
     true
-  end
-
-  # :nodoc:
-  private def free_pixbuf
-    return if @pixbuf.null?
-    LibGObject.unref(@pixbuf)
-    @pixbuf = Pointer(LibGdk::Pixbuf).null
   end
 
   # Sets the current application name

@@ -145,23 +145,6 @@ describe Notify::Notification do
     end
   end
 
-  describe "#icon_load" do
-    it "updates the notification icon from a file" do
-      man = Notify::Manager.new("CrystalNotify")
-      notif = man.notify(
-        "Crystal-Notify",
-        "The icon was created via a GdkPixbuf.",
-        "dialog-no"
-      )
-      notif.should_not be(nil)
-      if notif
-        notif.icon_load("./res/icon.svg").should be_true
-        notif.icon.should eq("")
-        notif.show.should be_true
-      end
-    end
-  end
-
   describe "#same?" do
     it "checks if two notifications are the same based on their libnotify struct" do
       man = Notify::Manager.new("CrystalNotify")

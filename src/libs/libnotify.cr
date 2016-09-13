@@ -2,7 +2,6 @@
 
 require "./libgobject"
 require "./libglib"
-require "./libgdk"
 
 @[Link("libnotify")]
 lib LibNotify
@@ -61,7 +60,7 @@ lib LibNotify
   ) : Int32
   fun notif_set_image_pixbuf  = notify_notification_set_image_from_pixbuf(
     notification : Notification*,
-    pixbuf       : LibGdk::Pixbuf*
+    pixbuf       : Void*
   ) : Void
   fun notif_set_app_name      = notify_notification_set_app_name(
     notification : Notification*,
