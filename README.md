@@ -23,7 +23,7 @@ Then run `crystal deps`
 ```crystal
 require "crystal-notify"
 
-manager = Notify::Manager.new("MyApp")
+manager = Notify::Manager.new "MyApp"
 manager.notify("Summary", "Body", "dialog-ok").show
 ```
 
