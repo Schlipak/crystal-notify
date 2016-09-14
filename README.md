@@ -2,7 +2,8 @@
 
 [Crystal](https://crystal-lang.org/) bindings for [libnotify](https://developer.gnome.org/libnotify/)
 
-This library is intended to be a complete binding of all functionalities available in libnotify.<br>
+This library is intended to be a complete binding of all functionalities available in libnotify.
+
 For a more lightweight version, check out [libnotify.cr](https://github.com/splattael/libnotify.cr)
 
 ## Installation
@@ -30,7 +31,7 @@ manager.notify("Summary", "Body", "dialog-ok").show
 
 ## Contributing
 
-1. Fork it ( <https://github.com/schlipak/crystal-notify/fork> )
+1. [Fork it](https://github.com/schlipak/crystal-notify/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
