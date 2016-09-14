@@ -208,7 +208,7 @@ class Notify::Manager
   # *Returns* :
   #   - `Notify::Notification`
   # *Raises*  :
-  #   - `InitializationException`
+  #   - `Notify::Notification::InstantiationException`
   #
   # *icon* can be:
   #   - the GTK name for the icon you want. Check out the [GTK spec](https://developer.gnome.org/icon-naming-spec/) to list some of them.
