@@ -173,7 +173,8 @@ describe Notify::Manager do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
         "Markup test",
-        "This is a <b>Markup</b> test, you <i>should</i> see this body with a few <u>styles</u> applied to it if your notification server supports `body-markup`."
+        "This is a <b>Markup</b> test, you <i>should</i> see this body with a few <u>styles</u> applied to it if your notification server supports `body-markup`.",
+        "gtk-about"
       )
       notif.should_not be(nil)
       if notif

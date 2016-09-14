@@ -268,9 +268,9 @@ describe Notify::Notification do
     it "checks that a notification can be shown only once" do
       man = Notify::Manager.new("CrystalNotify")
       notif = man.notify(
-      "Multiple calls to #show",
-      "This is the first and only time you should see me.",
-      "gtk-about"
+        "Multiple calls to #show",
+        "This is the first and only time you should see me.",
+        "gtk-about"
       )
       notif.should_not be(nil)
       if notif
