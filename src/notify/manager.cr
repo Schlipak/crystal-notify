@@ -201,10 +201,14 @@ class Notify::Manager
 
   # Creates a new notification
   #
-  # *Args*  :
+  # *Args*    :
   #   - *summary* : String
   #   - *body*    : String
   #   - *icon*    : String
+  # *Returns* :
+  #   - `Notify::Notification`
+  # *Raises*  :
+  #   - `Notify::Notification::InitializationException`
   #
   # *icon* can be:
   #   - the GTK name for the icon you want. Check out the [GTK spec](https://developer.gnome.org/icon-naming-spec/) to list some of them.
