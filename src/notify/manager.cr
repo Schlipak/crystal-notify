@@ -10,6 +10,8 @@ class Notify::Manager
   class InitializationException < Exception
   end
 
+  @infos : ServerInfo?
+
   # Instanciates a new Notify::Manager with the given application
   # name
   #
@@ -21,6 +23,9 @@ class Notify::Manager
   #   - `InitializationException`
   def initialize(@app_name : String)
     @notifications = [] of Notification
+    @caps          = [] of String
+    @infos         = nil
+
     unless LibNotify.init(@app_name)
       raise InitializationException.new("Error while initializing libnotify")
     end
@@ -82,6 +87,24 @@ class Notify::Manager
     end
   end
 
+  # :nodoc:
+  private def preload_server_caps
+    head = LibNotify.get_server_caps
+    return unless head
+    node = head
+    while node.value.next
+      @caps << String.new(node.value.data.as LibC::Char*)
+      node = node.value.next
+    end
+    node = head
+    while node.value.next
+      nexxt = node.value.next
+      LibGLib.free(node.value.data)
+      node = nexxt
+    end
+    LibGLib.list_free(head)
+  end
+
   # Gives the list of the features the current
   # notification server supports
   #
@@ -93,22 +116,8 @@ class Notify::Manager
   # man.server_caps #=> ["actions", "actions-icons", "body", "body-markup", "icon-static"]
   # ```
   def server_caps
-    caps = [] of String
-    head = LibNotify.get_server_caps
-    return caps unless head
-    node = head
-    while node.value.next
-      caps << String.new(node.value.data.as LibC::Char*)
-      node = node.value.next
-    end
-    node = head
-    while node.value.next
-      nexxt = node.value.next
-      LibGLib.free(node.value.data)
-      node = nexxt
-    end
-    LibGLib.list_free(head)
-    caps
+    preload_server_caps if @caps.empty?
+    @caps
   end
 
   # Returns a textual description of a server capability
@@ -146,6 +155,18 @@ class Notify::Manager
     end
   end
 
+  # :nodoc:
+  private def preload_server_info
+    LibNotify.get_server_info(
+      out name,
+      out vendor,
+      out version,
+      out spec_version
+    )
+
+    @info = ServerInfo.new(name, vendor, version, spec_version)
+  end
+
   # Gives some infos about the current notification server
   #
   # *Returns* :
@@ -156,14 +177,8 @@ class Notify::Manager
   # puts man.server_info
   # ```
   def server_info
-    LibNotify.get_server_info(
-      out name,
-      out vendor,
-      out version,
-      out spec_version
-    )
-
-    ServerInfo.new(name, vendor, version, spec_version)
+    preload_server_info if @info.nil?
+    @info.as ServerInfo
   end
 
   # Creates a new notification

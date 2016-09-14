@@ -168,6 +168,18 @@ describe Notify::Manager do
         notif.icon.should eq(File.expand_path(icon_name))
       end
     end
+
+    it "shows a notification with markup if available" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
+        "Markup test",
+        "This is a <b>Markup</b> test, you <i>should</i> see this body with a few <u>styles</u> applied to it if your notification server supports `body-markup`."
+      )
+      notif.should_not be(nil)
+      if notif
+        notif.show.should be_true
+      end
+    end
   end
 
   describe "#server_caps" do
