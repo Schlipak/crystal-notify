@@ -214,4 +214,11 @@ describe Notify::Manager do
       end
     end
   end
+
+  describe "#supports?" do
+    it "checks if the notifications server supports a capability" do
+      man = Notify::Manager.new("CrystalNotify")
+      man.supports?("body-markup").should be_a(Bool)
+    end
+  end
 end

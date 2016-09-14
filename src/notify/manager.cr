@@ -155,6 +155,24 @@ class Notify::Manager
     end
   end
 
+  # Returns true if a capability is supported by the notification server
+  #
+  # You should check for a capability before using the corresponding features.
+  #
+  # *Args*    :
+  #   - *cap* : *String*
+  # *Returns* :
+  #   - *Bool*
+  #
+  # ```
+  # man = Notify::Manager.new "App"
+  # man.supports? "body-markup" #=> true
+  #                             # Can use markup in the notification body
+  # ```
+  def supports?(cap : String)
+    server_caps.includes? cap
+  end
+
   # :nodoc:
   private def preload_server_info
     LibNotify.get_server_info(
