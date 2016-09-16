@@ -215,7 +215,7 @@ class Notify::Notification
   #   - *Bool*
   def show
     return false if @state >= State::Shown
-    err = Pointer(LibGLib::Error).null
+    err = Pointer(GLib::Error).null
     if LibNotify.notif_show(@lib_pointer, pointerof(err))
       @state = State::Shown
       true
@@ -233,7 +233,7 @@ class Notify::Notification
   #   - *Bool*
   def close
     return false if @state == State::Closed
-    err = Pointer(LibGLib::Error).null
+    err = Pointer(GLib::Error).null
     if LibNotify.notif_close(@lib_pointer, pointerof(err))
       @state = State::Closed
       true
@@ -247,7 +247,7 @@ class Notify::Notification
 
   # :nodoc:
   def on_close(callback : Proc)
-    LibGLib.signal_connect(
+    GLib.signal_connect(
       @lib_pointer,
       "closed",
       callback,

@@ -99,10 +99,10 @@ class Notify::Manager
     node = head
     while node.value.next
       nexxt = node.value.next
-      LibGLib.free(node.value.data)
+      GLib.free(node.value.data)
       node = nexxt
     end
-    LibGLib.list_free(head)
+    GLib.list_free(head)
   end
 
   # Gives the list of the features the current

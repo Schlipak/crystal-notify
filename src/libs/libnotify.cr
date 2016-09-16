@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require "./libgobject"
-require "./libglib"
+require "./glib"
 
 @[Link("libnotify")]
 lib LibNotify
-  alias Notification = LibGObject::GObject
+  alias Notification = Void
 
   enum Timeout
     Default = -1,
@@ -28,7 +27,7 @@ lib LibNotify
   fun set_app_name    = notify_set_app_name(
     app_name : LibC::Char*
   ) : Void
-  fun get_server_caps = notify_get_server_caps() : LibGLib::List*
+  fun get_server_caps = notify_get_server_caps() : GLib::List*
   fun get_server_info = notify_get_server_info(
     ret_name         : LibC::Char**,
     ret_vendor       : LibC::Char**,
@@ -49,11 +48,11 @@ lib LibNotify
   ) : Bool
   fun notif_show              = notify_notification_show(
     notification : Notification*,
-    error        : LibGLib::Error**
+    error        : GLib::Error**
   ) : Bool
   fun notif_close             = notify_notification_close(
     notification : Notification*,
-    error        : LibGLib::Error**
+    error        : GLib::Error**
   ) : Bool
   fun notif_get_closed_reason = notify_notification_get_closed_reason(
     notification : Notification*

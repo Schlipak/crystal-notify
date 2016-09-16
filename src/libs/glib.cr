@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 @[Link("glib-2.0")]
-lib LibGLib
+lib GLib
   struct Error
     domain  : UInt32
     code    : Int32

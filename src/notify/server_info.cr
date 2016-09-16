@@ -16,10 +16,10 @@ class Notify::ServerInfo
     @version      = version ? String.new(version) : ""
     @spec_version = spec_version ? String.new(spec_version) : ""
 
-    LibGLib.free(name)
-    LibGLib.free(vendor)
-    LibGLib.free(version)
-    LibGLib.free(spec_version)
+    GLib.free(name)
+    GLib.free(vendor)
+    GLib.free(version)
+    GLib.free(spec_version)
   end
 
   # Gets the notification server name
