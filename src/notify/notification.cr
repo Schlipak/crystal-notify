@@ -92,8 +92,6 @@ class Notify::Notification
   #   - *Int32 | LibNotify::Timeout*
   getter timeout
 
-  getter box
-
   # Sets the notification summary and updates
   # the `LibNotify::Notification` struct
   #
