@@ -222,7 +222,7 @@ class Notify::Manager
     )
 
     icon = File.expand_path icon if expand
-    notif = Notification.new(@app_name, summary, body, icon)
+    notif = Notification.new(self, @app_name, summary, body, icon)
     @notifications << notif
     return notif
   end

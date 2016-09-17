@@ -17,12 +17,14 @@ class Notify::Notification
 
   @lib_pointer : LibNotify::Notification*
   @state       : State
+  @box         : Box(Notification ->)?
 
   # Creates a new Notification
   #
   # Do not call this method directly,
   # `Notify::Manager#notify` takes care of this
   def initialize(
+      @manager  : Notify::Manager,
       @app_name : String,
       @summary  : String,
       @body     : String = "",
@@ -89,6 +91,8 @@ class Notify::Notification
   # *Returns* :
   #   - *Int32 | LibNotify::Timeout*
   getter timeout
+
+  getter box
 
   # Sets the notification summary and updates
   # the `LibNotify::Notification` struct
@@ -257,14 +261,42 @@ class Notify::Notification
     )
   end
 
-  # **FIXME**: Always returns -1 since we don't have access to
-  # signal_connect to use the 'closed' signal.
-  #
   # Gets the closed reason ID
+  #
+  # **FIXME**: Always returns -1
   #
   # *Returns*   :
   #   - *Int32*
   def closed_reason
     LibNotify.notif_get_closed_reason(@lib_pointer)
+  end
+
+  # Adds an action with a callback to the notification
+  #
+  # **FIXME**: Does not seem to do anything for some reason...
+  # The GC sweeps the Box as soon as the specs are done, so LibNotify
+  # can't run the callback, but it does not work either when sleeping
+  # before exiting.
+  #
+  # *Args*    :
+  #   - *id* : *String* the action ID
+  #   - *label* : *String* the action label
+  #   - *&callback* : *Notification ->* a block to which `self` if yielded
+  # *Returns* :
+  #   - *Bool*
+  def add_action(id : String, label : String, &callback : Notification ->)
+    return false unless @manager.supports? "actions"
+    boxed_data = Box.new(callback)
+    @box = boxed_data
+    LibNotify.notif_add_action(
+      @lib_pointer,
+      id, label,
+      ->(notif, action, data) {
+        data_as_callback = Box(typeof(callback)).unbox(data)
+        data_as_callback.call(notif.as Notification)
+      },
+      boxed_data.as(Void*), nil
+    )
+    true
   end
 end

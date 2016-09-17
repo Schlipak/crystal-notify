@@ -16,6 +16,27 @@ describe Notify::Notification do
     end
   end
 
+  describe "#add_action" do
+    it "adds an action to the notification" do
+      man = Notify::Manager.new("CrystalNotify")
+      notif = man.notify(
+        "A notification with an action",
+        "Click it!"
+      )
+      notif.should_not be(nil)
+      if notif
+        ret = notif.add_action("action_test", "Test Action") do |notif|
+          puts "Action clicked"
+          %x(pluma&)
+        end
+        unless ret
+          STDERR.puts "\nYour notification server does not support actions"
+        end
+        notif.show.should be_true
+      end
+    end
+  end
+
   describe "#app_name" do
     it "gets the app name" do
       app_name = "CrystalNotify"
