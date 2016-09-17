@@ -281,7 +281,7 @@ class Notify::Notification
   # *Args*    :
   #   - *id* : *String* the action ID
   #   - *label* : *String* the action label
-  #   - *&callback* : *Notification ->* a block to which `self` if yielded
+  #   - *&callback* : *Notification ->* a block to be run, which receives `self`
   # *Returns* :
   #   - *Bool*
   def add_action(id : String, label : String, &callback : Notification ->)
